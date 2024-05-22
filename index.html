@@ -14,85 +14,95 @@
     <p>
         Drag and drop rings onto stakes. It does not prevent you from doing illegal things yet so follow the rules :)
     </p>
-    <div id="mobile_goals_start" class="stake_area">
+    <div id="split_screen">
+        <div id="setup" class="split_screen_element">
+            <div id="mobile_goals_start" class="stake_area">
+            </div>
+            <div id="neutral_stakes" class="stake_area">
+                <div class="stake neutral_stake" id="neutral_stake_1" ondragover="allowDropRing(event)"
+                    ondrop="dropRing(event)"></div>
+                <div class=" stake neutral_stake" id="neutral_stake_2" ondragover="allowDropRing(event)"
+                    ondrop="dropRing(event)"></div>
+            </div>
+
+            <div id="alliance_stakes" class="stake_area">
+                <div class="stake alliance_stake red" id="red_alliance_stake" ondragover="allowDropRing(event)"
+                    ondrop="dropRing(event)"></div>
+                <div class=" stake alliance_stake blue" id="blue_alliance_stake" ondragover="allowDropRing(event)"
+                    ondrop="dropRing(event)"></div>
+            </div>
+
+            <div id="high_stake_holder" class="stake_area">
+                <div class="stake high_stake" id="high_stake" ondragover="allowDropRing(event)"
+                    ondrop="dropRing(event)"></div>
+            </div>
+
+
+
+            <div id="rings_start">
+                <div id="red_rings_start" class="ring_area" ondragover="allowDropRing(event)" ondrop="dropRing(event)">
+                </div>
+                <div id="blue_rings_start" class="ring_area" ondragover="allowDropRing(event)" ondrop="dropRing(event)">
+                </div>
+            </div>
+            <span id="auto_win_selector">
+                Auto Winner:
+                <input type="radio" id="tie-radio" name="auto_winner" value="tie" checked="checked">
+                <label for="tie">Tie</label>
+
+                <input type="radio" id="red-radio" name="auto_winner" value="red">
+                <label for="red">Red</label>
+
+                <input type="radio" id="blue-radio" name="auto_winner" value="blue">
+                <label for="blue">Blue</label>
+
+            </span>
+        </div>
+        <!-- Scoring Breakdown-->
+        <div id="scoring" class="split_screen_element">
+            <table class="score-table">
+                <tr>
+                    <td class="neutral">Climb</td>
+                    <td class="red" id="score_climb_red">10</td>
+                    <td class="blue" id="score_climb_blue">10</td>
+                </tr>
+                <tr>
+                    <td class="neutral">Alliance Stakes</td>
+                    <td class="red" id="score_alliance_red">4</td>
+                    <td class="blue" id="score_alliance_blue">3</td>
+                </tr>
+                <tr>
+                    <td class="neutral">Neutral Stakes</td>
+                    <td class="red" id="score_neutral_red">4</td>
+                    <td class="blue" id="score_neutral_blue">3</td>
+                </tr>
+                <tr>
+                    <td class="neutral">Mobile Goals</td>
+                    <td class="red" id="score_mogo_red">4</td>
+                    <td class="blue" id="score_mogo_blue">3</td>
+                </tr>
+                <tr>
+                    <td class="neutral">High Stake</td>
+                    <td class="red" id="score_high_red">4</td>
+                    <td class="blue" id="score_high_blue">3</td>
+                </tr>
+                <tr>
+                    <td class="neutral">Auto</td>
+                    <td class="red" id="score_auto_red">3</td>
+                    <td class="blue" id="score_auto_blue">3</td>
+                </tr>
+                <tr>
+                    <th class="neutral">Final</td>
+                    <th class="red" id="score_full_red">3</td>
+                    <th class="blue" id="score_full_blue">3</td>
+                </tr>
+
+            </table>
+            <div>Delta: <span id="delta_location"></span></div>
+            <button onclick="window.location.reload()">Reset</button>
+            <div id="error_messages"></div>
+        </div>
     </div>
-    <div id="neutral_stakes" class="stake_area">
-        <div class="stake neutral_stake" id="neutral_stake_1" ondragover="allowDropRing(event)"
-            ondrop="dropRing(event)"></div>
-        <div class=" stake neutral_stake" id="neutral_stake_2" ondragover="allowDropRing(event)"
-            ondrop="dropRing(event)"></div>
-    </div>
-
-    <div id="alliance_stakes" class="stake_area">
-        <div class="stake alliance_stake red" id="red_alliance_stake" ondragover="allowDropRing(event)"
-            ondrop="dropRing(event)"></div>
-        <div class=" stake alliance_stake blue" id="blue_alliance_stake" ondragover="allowDropRing(event)"
-            ondrop="dropRing(event)"></div>
-    </div>
-
-    <div id="high_stake_holder" class="stake_area">
-        <div class="stake high_stake" id="high_stake" ondragover="allowDropRing(event)" ondrop="dropRing(event)"></div>
-    </div>
-
-
-
-    <div id="rings_start">
-        <div id="red_rings_start" ondragover="allowDropRing(event)" ondrop="dropRing(event)"></div>
-        <div id="blue_rings_start" ondragover="allowDropRing(event)" ondrop="dropRing(event)"></div>
-    </div>
-    <span id="auto_win_selector">
-        Auto Winner:
-        <input type="radio" id="tie-radio" name="auto_winner" value="tie" checked="checked">
-        <label for="tie">Tie</label>
-
-        <input type="radio" id="red-radio" name="auto_winner" value="red">
-        <label for="red">Red</label>
-
-        <input type="radio" id="blue-radio" name="auto_winner" value="blue">
-        <label for="blue">Blue</label>
-
-    </span>
-    <!-- Scoring Breakdown-->
-    <table class="score-table">
-        <tr>
-            <td class="neutral">Climb</td>
-            <td class="red" id="score_climb_red">10</td>
-            <td class="blue" id="score_climb_blue">10</td>
-        </tr>
-        <tr>
-            <td class="neutral">Alliance Stakes</td>
-            <td class="red" id="score_alliance_red">4</td>
-            <td class="blue" id="score_alliance_blue">3</td>
-        </tr>
-        <tr>
-            <td class="neutral">Neutral Stakes</td>
-            <td class="red" id="score_neutral_red">4</td>
-            <td class="blue" id="score_neutral_blue">3</td>
-        </tr>
-        <tr>
-            <td class="neutral">Mobile Goals</td>
-            <td class="red" id="score_mogo_red">4</td>
-            <td class="blue" id="score_mogo_blue">3</td>
-        </tr>
-        <tr>
-            <td class="neutral">High Stake</td>
-            <td class="red" id="score_high_red">4</td>
-            <td class="blue" id="score_high_blue">3</td>
-        </tr>
-        <tr>
-            <td class="neutral">Auto</td>
-            <td class="red" id="score_auto_red">3</td>
-            <td class="blue" id="score_auto_blue">3</td>
-        </tr>
-        <tr>
-            <th class="neutral">Final</td>
-            <th class="red" id="score_full_red">3</td>
-            <th class="blue" id="score_full_blue">3</td>
-        </tr>
-
-    </table>
-    <button onclick="window.location.reload()">Reset</button>
-    <div id="error_messages"></div>
 
 </body>
 

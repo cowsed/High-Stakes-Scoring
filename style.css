@@ -29,6 +29,16 @@
 
 }
 
+#split_screen {
+    display: flex;
+}
+
+.split_screen_element {
+    width: 50%;
+    padding-left: 1%;
+}
+
+
 #rings_start {
 
     user-select: none;

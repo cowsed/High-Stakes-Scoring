@@ -52,7 +52,8 @@ function dragRing(ev) {
 }
 
 function dropRing(ev) {
-  if (!ev.target.classList.contains('stake')) {
+  if (!ev.target.classList.contains('stake') &&
+      !ev.target.classList.contains('ring_area')) {
     console.log('Doing it wrong');
     return;
   }
@@ -197,6 +198,7 @@ function score_stake(el, max_rings) {
   var first_el = true;
   var ring_count = 0;
   for (const ring of el.childNodes) {
+    console.log('Ring', ring)
     if (!ring.classList.contains('ring')) {
       console.log('not ring');
       continue;
@@ -304,4 +306,6 @@ function recalculateAll() {
     total = total.add(value)
   }
   total_cells.apply_points(total)
+  delta = total.red - total.blue
+  document.getElementById('delta_location').innerHTML = delta
 }
