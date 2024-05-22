@@ -97,15 +97,49 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   recalculateAll();
 })
+/**
+ * @param {String} HTML representing a single element.
+ * @param {Boolean} flag representing whether or not to trim input whitespace,
+ *     defaults to true.
+ * @return {Element | HTMLCollection | null}
+ */
+function fromHTML(html, trim = true) {
+  // Process the HTML string.
+  html = trim ? html.trim() : html;
+  if (!html) return null;
+
+  // Then set up a new template element.
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  const result = template.content.children;
+
+  // Then return either an HTMLElement or HTMLCollection,
+  // based on whether the input HTML had one or more roots.
+  if (result.length === 1) return result[0];
+  return result;
+}
+
 
 function newMobileGoal(id) {
   el = document.createElement('div');
   el.setAttribute('class', 'stake mobile_goal')
   el.id = 'mobile_goal_' + id
-  //   el.draggable = true
-  //   el.ondragstart = 'drag(event)'
+
   el.setAttribute('ondragover', 'allowDropRing(event)')
   el.setAttribute('ondrop', 'dropRing(event)')
+
+
+  scoring_dropdown = `
+    <select name="modifiers" onchange="recalculateAll()">
+        <option value="1"> </option>
+        <option value="2">+</option>
+        <option value='-1'>-</option>
+    </select>
+    `
+  dropdown = fromHTML(scoring_dropdown, true)
+  dropdown.id = el.id + '_mod';
+  el.appendChild(dropdown)
+
   return el
 }
 function add_mogos() {
@@ -135,17 +169,16 @@ function add_rings() {
 }
 
 
-function score_stake(el, is_doubled, is_negated) {
-  dist = new ScoreDist(0, 0)
-  modifier = 1
-  if (is_doubled) {
-    modifer = 2
-  }
-  if (is_negated) {
-    modifier = -1
-  }
-  console.log('scoring', el)
+function score_stake(el, modifier) {
+  dist = new ScoreDist(0, 0);
+  modifier = 1;
 
+  if (el.classList.contains('mobile_goal')) {
+    modifier_el = document.getElementById(el.id + '_mod')
+    mod_text = modifier_el.options[modifier_el.selectedIndex].value
+    modifier = parseInt(mod_text);
+    console.log('mod', mod_text)
+  }
 
   var first_el = true;
   for (const ring of el.childNodes) {

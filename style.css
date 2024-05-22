@@ -11,7 +11,7 @@
     --ring-radius: calc(var(--ring-height) /2);
 
     --ring-stacking-unit-height: calc(var(--ring-height) + 0.3em);
-    --mogo-height: calc(var(--ring-stacking-unit-height) * 6);
+    --mogo-height: calc(var(--ring-stacking-unit-height) * 6 + 1em);
     --alliance-stake-height: calc(var(--ring-stacking-unit-height) * 2);
     --neutral-stake-height: calc(var(--ring-stacking-unit-height) * 6);
     --high-stake-height: calc(var(--ring-stacking-unit-height) * 1);
@@ -19,7 +19,8 @@
 
 
 .stake_area {
-    display: flex;
+    display: inline-flex;
+    vertical-align: bottom;
     margin: 1em;
     user-select: none;
 
