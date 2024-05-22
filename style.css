@@ -1,0 +1,129 @@
+:root {
+    --vex-red: #f10035;
+    --vex-red-faded: #f14d71;
+    --vex-blue: #008ec7;
+    --vex-blue-faded: #62aac7;
+    --vex-yellow: yellow;
+    --vex-dark-gray: darkgray;
+
+    --ring-width: 4vw;
+    --ring-height: calc(var(--ring-width) * .33);
+    --ring-radius: calc(var(--ring-height) /2);
+
+    --ring-stacking-unit-height: calc(var(--ring-height) + 0.4vw);
+    --mogo-height: calc(var(--ring-stacking-unit-height) * 6);
+    --alliance-stake-height: calc(var(--ring-stacking-unit-height) * 2);
+    --neutral-stake-height: calc(var(--ring-stacking-unit-height) * 6);
+}
+
+
+.stake_area {
+    display: flex;
+    margin: 1vw;
+}
+
+#rings_start {
+    border: 1px solid gray;
+}
+
+.stake {
+    width: 1vw;
+    border-left: 1vw solid white;
+    border-right: 1vw solid white;
+
+    margin-left: 0.75vw;
+    margin-right: 0.75vw;
+
+    /* Make rings stack nice */
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+}
+
+.alliance_stake {
+    height: var(--alliance-stake-height);
+
+}
+
+.neutral_stake {
+    height: var(--neutral-stake-height);
+
+    background-color: var(--vex-dark-gray);
+}
+
+.mobile_goal {
+    height: var(--mogo-height);
+
+    background-color: var(--vex-yellow);
+}
+
+.ring {
+    width: var(--ring-width);
+    height: var(--ring-height);
+    border-radius: var(--ring-height);
+    display: inline-block;
+
+    margin: 0.1vw;
+    text-align: center;
+
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
+
+.red {
+    background-color: var(--vex-red);
+}
+
+.blue {
+    background-color: var(--vex-blue);
+}
+
+.ghost_ring {
+    /* background-color: gray !important; */
+    opacity: .5;
+}
+
+.score-table {
+    background-color: white;
+    border-spacing: 0px;
+    border-collapse: collapse;
+
+    text-align: center;
+}
+
+.score-table td {
+    border: 1px solid gray;
+    padding: 4px;
+}
+
+.score-table th {
+    border: 0.5px solid gray;
+    padding: 4px;
+
+}
+
+.score-table th.neutral {
+    background-color: lightgray;
+}
+
+.score-table th.red {
+    background-color: var(--vex-red);
+}
+
+.score-table th.blue {
+    background-color: var(--vex-blue);
+}
+
+
+.score-table td.neutral {
+    background-color: white;
+}
+
+.score-table td.red {
+    background-color: var(--vex-red-faded);
+}
+
+.score-table td.blue {
+    background-color: var(--vex-blue-faded);
+}
