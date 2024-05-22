@@ -46,7 +46,7 @@ function dragRing(ev) {
   if (ev.target == null) {
     return;
   }
-  console.log('dragging', ev.target)
+  ev.target.innerHTML = '0'
   ev.target.classList.add('ghost_ring')
   ev.dataTransfer.setData('text', ev.target.id);
 }
