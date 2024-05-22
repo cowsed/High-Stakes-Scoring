@@ -3,6 +3,20 @@ const RED_RINGS = 24;
 const BLUE_RINGS = 24;
 const NUM_MOBILE_GOALS = 5
 
+
+const MAX_ALLIANCE_RINGS = 2;
+const MAX_MOGO_RINGS = 6;
+const MAX_NEUTRAL_RINGS = 6;
+const MAX_HIGH_RINGS = 1;
+
+function error_text_append(str) {
+  document.getElementById('error_messages').innerHTML += str + '<br>'
+}
+
+function error_text_clear() {
+  document.getElementById('error_messages').innerHTML = ''
+}
+
 class ScoreDist {
   constructor(red, blue) {
     this.red = red;
@@ -169,7 +183,7 @@ function add_rings() {
 }
 
 
-function score_stake(el, modifier) {
+function score_stake(el, max_rings) {
   dist = new ScoreDist(0, 0);
   modifier = 1;
 
@@ -181,11 +195,13 @@ function score_stake(el, modifier) {
   }
 
   var first_el = true;
+  var ring_count = 0;
   for (const ring of el.childNodes) {
     if (!ring.classList.contains('ring')) {
       console.log('not ring');
       continue;
     }
+    ring_count++;
     if (ring.classList.contains('red')) {
       if (first_el) {
         ramt = 3;
@@ -209,14 +225,18 @@ function score_stake(el, modifier) {
     first_el = false;
   }
   console.log('dist', dist)
-
+  if (ring_count > max_rings) {
+    stake_id = el.id.replace('_', ' ');
+    error_text_append(
+        `${ring_count} rings on ${stake_id} which takes ${max_rings} rings`)
+  }
   return dist;
 }
 
 function score_mogos() {
   scores = new ScoreDist(0, 0);
   document.querySelectorAll('.mobile_goal')
-      .forEach(mogo => {scores = scores.add(score_stake(mogo, false, false))})
+      .forEach(mogo => {scores = scores.add(score_stake(mogo, MAX_MOGO_RINGS))})
 
   return scores;
 }
@@ -224,16 +244,24 @@ function score_mogos() {
 function score_alliance() {
   scores = new ScoreDist(0, 0);
   document.querySelectorAll('.alliance_stake')
-      .forEach(stake => {scores = scores.add(score_stake(stake, false, false))})
+      .forEach(
+          stake => {
+              scores = scores.add(score_stake(stake, MAX_ALLIANCE_RINGS))})
 
   return scores;
 }
 
+function score_high() {
+  const high_stake = document.getElementById('high_stake');
+  console.log('high', high_stake)
+  return score_stake(high_stake, MAX_HIGH_RINGS)
+}
 
 function score_neutral() {
   scores = new ScoreDist(0, 0);
   document.querySelectorAll('.neutral_stake')
-      .forEach(stake => {scores = scores.add(score_stake(stake, false, false))})
+      .forEach(
+          stake => {scores = scores.add(score_stake(stake, MAX_NEUTRAL_RINGS))})
 
   return scores;
 }
@@ -256,14 +284,10 @@ function get_auto_points() {
   }[get_auto_winner()];
 }
 
-function score_high() {
-  const high_stake = document.getElementById('high_stake');
-  console.log('high', high_stake)
-  return score_stake(high_stake, false, false)
-}
+
 
 function recalculateAll() {
-  console.log('calc');
+  error_text_clear();
 
   const output = {
     'climb': new ScoreDist(0, 0),
@@ -273,6 +297,7 @@ function recalculateAll() {
     'high_stake': score_high(),
     'auto': get_auto_points(),
   };
+
   total = new ScoreDist(0, 0);
   for (const [key, value] of Object.entries(output)) {
     output_cells[key].apply_points(value)

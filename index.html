@@ -17,13 +17,17 @@
     <div id="mobile_goals_start" class="stake_area">
     </div>
     <div id="neutral_stakes" class="stake_area">
-        <div class="stake neutral_stake" ondragover="allowDropRing(event)" ondrop="dropRing(event)"></div>
-        <div class=" stake neutral_stake" ondragover="allowDropRing(event)" ondrop="dropRing(event)"></div>
+        <div class="stake neutral_stake" id="neutral_stake_1" ondragover="allowDropRing(event)"
+            ondrop="dropRing(event)"></div>
+        <div class=" stake neutral_stake" id="neutral_stake_2" ondragover="allowDropRing(event)"
+            ondrop="dropRing(event)"></div>
     </div>
 
     <div id="alliance_stakes" class="stake_area">
-        <div class="stake alliance_stake red" ondragover="allowDropRing(event)" ondrop="dropRing(event)"></div>
-        <div class=" stake alliance_stake blue" ondragover="allowDropRing(event)" ondrop="dropRing(event)"></div>
+        <div class="stake alliance_stake red" id="red_alliance_stake" ondragover="allowDropRing(event)"
+            ondrop="dropRing(event)"></div>
+        <div class=" stake alliance_stake blue" id="blue_alliance_stake" ondragover="allowDropRing(event)"
+            ondrop="dropRing(event)"></div>
     </div>
 
     <div id="high_stake_holder" class="stake_area">
@@ -88,6 +92,7 @@
 
     </table>
     <button onclick="window.location.reload()">Reset</button>
+    <div id="error_messages"></div>
 
 </body>
 

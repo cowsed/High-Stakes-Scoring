@@ -17,6 +17,9 @@
     --high-stake-height: calc(var(--ring-stacking-unit-height) * 1);
 }
 
+#error_messages {
+    color: red;
+}
 
 .stake_area {
     display: inline-flex;
