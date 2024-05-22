@@ -38,6 +38,10 @@ function dragRing(ev) {
 }
 
 function dropRing(ev) {
+  if (!ev.target.classList.contains('stake')) {
+    console.log('Doing it wrong');
+    return;
+  }
   console.log('dropping', data)
   ev.preventDefault();
   var data = ev.dataTransfer.getData('text');
@@ -218,6 +222,13 @@ function get_auto_points() {
     'tie': new ScoreDist(3, 3)
   }[get_auto_winner()];
 }
+
+function score_high() {
+  const high_stake = document.getElementById('high_stake');
+  console.log('high', high_stake)
+  return score_stake(high_stake, false, false)
+}
+
 function recalculateAll() {
   console.log('calc');
 
@@ -226,7 +237,7 @@ function recalculateAll() {
     'alliance_stakes': score_alliance(),
     'neutral_stakes': score_neutral(),
     'mobile_goals': score_mogos(),
-    'high_stake': new ScoreDist(0, 0),
+    'high_stake': score_high(),
     'auto': get_auto_points(),
   };
   total = new ScoreDist(0, 0);

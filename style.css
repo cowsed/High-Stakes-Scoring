@@ -6,55 +6,66 @@
     --vex-yellow: yellow;
     --vex-dark-gray: darkgray;
 
-    --ring-width: 4vw;
+    --ring-width: 4em;
     --ring-height: calc(var(--ring-width) * .33);
     --ring-radius: calc(var(--ring-height) /2);
 
-    --ring-stacking-unit-height: calc(var(--ring-height) + 0.4vw);
+    --ring-stacking-unit-height: calc(var(--ring-height) + 0.3em);
     --mogo-height: calc(var(--ring-stacking-unit-height) * 6);
     --alliance-stake-height: calc(var(--ring-stacking-unit-height) * 2);
     --neutral-stake-height: calc(var(--ring-stacking-unit-height) * 6);
+    --high-stake-height: calc(var(--ring-stacking-unit-height) * 1);
 }
 
 
 .stake_area {
     display: flex;
-    margin: 1vw;
+    margin: 1em;
+    user-select: none;
+
 }
 
 #rings_start {
+
+    user-select: none;
     border: 1px solid gray;
 }
 
 .stake {
-    width: 1vw;
-    border-left: 1vw solid white;
-    border-right: 1vw solid white;
+    width: 0.5em;
+    border-left: 1em solid white;
+    border-right: 1em solid white;
 
-    margin-left: 0.75vw;
-    margin-right: 0.75vw;
+    margin-left: 1em;
+    margin-right: 1em;
 
     /* Make rings stack nice */
     display: inline-flex;
     justify-content: flex-end;
     align-items: center;
     flex-direction: column;
+
+    user-select: none;
 }
+
+
 
 .alliance_stake {
     height: var(--alliance-stake-height);
-
 }
 
 .neutral_stake {
     height: var(--neutral-stake-height);
-
     background-color: var(--vex-dark-gray);
 }
 
 .mobile_goal {
     height: var(--mogo-height);
+    background-color: var(--vex-yellow);
+}
 
+.high_stake {
+    height: var(--high-stake-height);
     background-color: var(--vex-yellow);
 }
 
@@ -64,11 +75,11 @@
     border-radius: var(--ring-height);
     display: inline-block;
 
-    margin: 0.1vw;
+    margin: 0.1em;
     text-align: center;
+    user-select: none;
 
-    /* margin-left: auto; */
-    /* margin-right: auto; */
+
 }
 
 .red {
@@ -109,10 +120,12 @@
 
 .score-table th.red {
     background-color: var(--vex-red);
+    min-width: 2em;
 }
 
 .score-table th.blue {
     background-color: var(--vex-blue);
+    min-width: 2em;
 }
 
 

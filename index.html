@@ -17,9 +17,14 @@
         <div class="stake neutral_stake" ondragover="allowDropRing(event)" ondrop="dropRing(event)"></div>
         <div class=" stake neutral_stake" ondragover="allowDropRing(event)" ondrop="dropRing(event)"></div>
     </div>
+
     <div id="alliance_stakes" class="stake_area">
         <div class="stake alliance_stake red" ondragover="allowDropRing(event)" ondrop="dropRing(event)"></div>
         <div class=" stake alliance_stake blue" ondragover="allowDropRing(event)" ondrop="dropRing(event)"></div>
+    </div>
+
+    <div id="high_stake_holder" class="stake_area">
+        <div class="stake high_stake" id="high_stake" ondragover="allowDropRing(event)" ondrop="dropRing(event)"></div>
     </div>
 
 
@@ -42,11 +47,6 @@
     </span>
     <!-- Scoring Breakdown-->
     <table class="score-table">
-        <tr>
-            <th class="neutral">Element</th>
-            <th class="red">Red</th>
-            <th class="blue">Blue</th>
-        </tr>
         <tr>
             <td class="neutral">Climb</td>
             <td class="red" id="score_climb_red">10</td>
@@ -84,6 +84,7 @@
         </tr>
 
     </table>
+    <button onclick="window.location.reload()">Reset</button>
 
 </body>
 
