@@ -34,8 +34,8 @@
 }
 
 .split_screen_element {
+    padding: 1%;
     width: 50%;
-    padding-left: 1%;
 }
 
 
@@ -43,6 +43,7 @@
 
     user-select: none;
     border: 1px solid gray;
+
 }
 
 .stake {

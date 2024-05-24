@@ -38,7 +38,6 @@ function ScoreDistFromLabel(label) {
 }
 
 function allowDropRing(ev) {
-  console.log('allow drop', ev)
   ev.preventDefault();
 }
 
@@ -54,16 +53,13 @@ function dragRing(ev) {
 function dropRing(ev) {
   if (!ev.target.classList.contains('stake') &&
       !ev.target.classList.contains('ring_area')) {
-    console.log('Doing it wrong');
     return;
   }
-  console.log('dropping', data)
   ev.preventDefault();
   var data = ev.dataTransfer.getData('text');
   el = document.getElementById(data)
   el.classList.remove('ghost_ring')
 
-  //   ev.target.appendChild(el);
   ev.target.insertBefore(el, ev.target.firstChild);
   recalculateAll();
 }
@@ -72,9 +68,8 @@ function dropRing(ev) {
 function ringNotThere(ev) {
   //   var data = ev.dataTransfer.getData('text');
   //   el = document.getElementById(data)
-  //   console.log('not there', data, el)
   //   el.classList.remove('ghost_ring')
-  //   recalculateAll();
+  recalculateAll();
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -84,7 +79,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     'blue': document.getElementById('blue-radio')
   };
 
-  console.log(auto_winner_buttons)
 
   auto_winner_buttons['tie'].addEventListener('click', recalculateAll);
   auto_winner_buttons['red'].addEventListener('click', recalculateAll);
@@ -192,15 +186,12 @@ function score_stake(el, max_rings) {
     modifier_el = document.getElementById(el.id + '_mod')
     mod_text = modifier_el.options[modifier_el.selectedIndex].value
     modifier = parseInt(mod_text);
-    console.log('mod', mod_text)
   }
 
   var first_el = true;
   var ring_count = 0;
   for (const ring of el.childNodes) {
-    console.log('Ring', ring)
     if (!ring.classList.contains('ring')) {
-      console.log('not ring');
       continue;
     }
     ring_count++;
@@ -226,11 +217,10 @@ function score_stake(el, max_rings) {
 
     first_el = false;
   }
-  console.log('dist', dist)
   if (ring_count > max_rings) {
-    stake_id = el.id.replace('_', ' ');
-    error_text_append(
-        `${ring_count} rings on ${stake_id} which takes ${max_rings} rings`)
+    stake_id = el.id.replaceAll('_', ' ');
+    error_text_append(`${ring_count} rings on <b>${stake_id}</b> which takes ${
+        max_rings} rings`)
   }
   return dist;
 }
@@ -255,7 +245,6 @@ function score_alliance() {
 
 function score_high() {
   const high_stake = document.getElementById('high_stake');
-  console.log('high', high_stake)
   return score_stake(high_stake, MAX_HIGH_RINGS)
 }
 
