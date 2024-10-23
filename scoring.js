@@ -288,7 +288,29 @@ function score_alliance() {
 
 function score_high() {
   const high_stake = document.getElementById('high_stake');
-  return score_stake(high_stake, MAX_HIGH_RINGS)
+  scores = score_stake(high_stake, MAX_HIGH_RINGS)
+
+  const red1Climb = parseInt(document.querySelector('input[name="red-1-climb"]:checked').value);
+  const red2Climb = parseInt(document.querySelector('input[name="red-2-climb"]:checked').value);
+  const blue1Climb = parseInt(document.querySelector('input[name="blue-1-climb"]:checked').value);
+  const blue2Climb = parseInt(document.querySelector('input[name="blue-2-climb"]:checked').value);
+
+
+  const redRingsOnHighStake = high_stake.querySelectorAll('.red.ring').length;
+  const blueRingsOnHighStake = high_stake.querySelectorAll('.blue.ring').length;
+
+  if (redRingsOnHighStake > 0) {
+    if (red1Climb > 0) scores.red += 2;
+    if (red2Climb > 0) scores.red += 2;
+    if(document.getElementById('red-buddy-check').checked) scores.red += 2
+  }
+  if (blueRingsOnHighStake > 0) {
+    if (blue1Climb > 0) scores.blue += 2;
+    if (blue2Climb > 0) scores.blue += 2;
+    if(document.getElementById('blue-buddy-check').checked) scores.blue += 2
+  }
+
+  return scores;
 }
 
 function score_neutral() {
