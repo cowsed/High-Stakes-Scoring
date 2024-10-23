@@ -55,6 +55,25 @@ function dropRing(ev) {
       !ev.target.classList.contains('ring_area')) {
     return;
   }
+
+  var max_rings;
+  if (ev.target.classList.contains('mobile_goal')) {
+    max_rings = MAX_MOGO_RINGS;
+  } else if (ev.target.classList.contains('alliance_stake')) {
+    max_rings = MAX_ALLIANCE_RINGS;
+  } else if (ev.target.classList.contains('neutral_stake')) {
+    max_rings = MAX_NEUTRAL_RINGS;
+  } else if (ev.target.classList.contains('high_stake')) {
+    max_rings = MAX_HIGH_RINGS;
+  }
+
+  const rings_scored = ev.target.querySelectorAll('.ring').length;
+
+  if (rings_scored >= max_rings) {
+    error_text_append(`Cannot add more than ${max_rings} rings to this stake.`);
+    return;
+  }
+
   ev.preventDefault();
   var data = ev.dataTransfer.getData('text');
   el = document.getElementById(data)
