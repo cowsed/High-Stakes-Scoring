@@ -265,6 +265,10 @@ function score_stake(el, max_rings) {
     error_text_append(`${ring_count} rings on <b>${stake_id}</b> which takes ${
         max_rings} rings`)
   }
+
+  if(dist.blue < 0) dist.blue = 0
+  if(dist.red < 0) dist.red = 0
+  
   return dist;
 }
 
@@ -380,6 +384,10 @@ function recalculateAll() {
     output_cells[key].apply_points(value)
     total = total.add(value)
   }
+
+  if(total.red < 0) total.red = 0
+  if(total.blue < 0) total.blue = 0
+  
   total_cells.apply_points(total)
   delta = total.red - total.blue
   document.getElementById('delta_location').innerHTML = delta
