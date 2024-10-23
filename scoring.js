@@ -190,11 +190,21 @@ function score_stake(el, max_rings) {
 
   var first_el = true;
   var ring_count = 0;
+
   for (const ring of el.childNodes) {
     if (!ring.classList.contains('ring')) {
       continue;
     }
     ring_count++;
+
+    // Don't score wrong color rings on alliance stakes
+    if ((ring.classList.contains('red') && el.classList.contains('blue')) || 
+        (ring.classList.contains('blue') && el.classList.contains('red'))) {
+      ring.innerHTML = '0';
+      first_el = false;
+      continue;
+    }
+
     if (ring.classList.contains('red')) {
       if (first_el) {
         ramt = 3;
