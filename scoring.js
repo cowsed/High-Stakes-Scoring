@@ -91,6 +91,17 @@ function ringNotThere(ev) {
   recalculateAll();
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Add event listeners for all climb selectors
+  const climbSelectors = document.querySelectorAll('.climb-selector input[type="radio"]');
+  
+  climbSelectors.forEach((radio) => {
+      radio.addEventListener('change', () => {
+          recalculateAll(); // Call recalculate function whenever a radio is changed
+      });
+  });
+});
+
 window.addEventListener('DOMContentLoaded', (event) => {
   auto_winner_buttons = {
     'tie': document.getElementById('tie-radio'),
@@ -98,12 +109,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     'blue': document.getElementById('blue-radio')
   };
 
-
   auto_winner_buttons['tie'].addEventListener('click', recalculateAll);
   auto_winner_buttons['red'].addEventListener('click', recalculateAll);
   auto_winner_buttons['blue'].addEventListener('click', recalculateAll);
-
-
 
   output_cells = {
     'auto': ScoreDistFromLabel('score_auto'),
@@ -304,13 +312,24 @@ function get_auto_points() {
   }[get_auto_winner()];
 }
 
+function calculateClimbScore() {
+  var redClimbScore = 0;
+  var blueClimbScore = 0;
 
+  redClimbScore += parseInt(document.querySelector('input[name="red-1-climb"]:checked').value);
+  redClimbScore += parseInt(document.querySelector('input[name="red-2-climb"]:checked').value);
+
+  blueClimbScore += parseInt(document.querySelector('input[name="blue-1-climb"]:checked').value);
+  blueClimbScore += parseInt(document.querySelector('input[name="blue-2-climb"]:checked').value);
+
+  return new ScoreDist(redClimbScore, blueClimbScore);
+}
 
 function recalculateAll() {
   error_text_clear();
 
   const output = {
-    'climb': new ScoreDist(0, 0),
+    'climb': calculateClimbScore(),
     'alliance_stakes': score_alliance(),
     'neutral_stakes': score_neutral(),
     'mobile_goals': score_mogos(),
