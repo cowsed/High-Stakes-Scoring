@@ -92,14 +92,20 @@ function ringNotThere(ev) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Add event listeners for all climb selectors
   const climbSelectors = document.querySelectorAll('.climb-selector input[type="radio"]');
+  const buddySelectors = document.querySelectorAll('.climb-selector input[type="checkbox"]');
   
   climbSelectors.forEach((radio) => {
       radio.addEventListener('change', () => {
-          recalculateAll(); // Call recalculate function whenever a radio is changed
+          recalculateAll();
       });
   });
+
+  buddySelectors.forEach((radio) => {
+    radio.addEventListener('change', () => {
+        recalculateAll();
+    });
+});
 });
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -317,10 +323,20 @@ function calculateClimbScore() {
   var blueClimbScore = 0;
 
   redClimbScore += parseInt(document.querySelector('input[name="red-1-climb"]:checked').value);
-  redClimbScore += parseInt(document.querySelector('input[name="red-2-climb"]:checked').value);
+  if(document.getElementById('red-buddy-check').checked){
+    redClimbScore += 2 * (parseInt(document.querySelector('input[name="red-2-climb"]:checked').value));
+  }
+  else{
+    redClimbScore += parseInt(document.querySelector('input[name="red-2-climb"]:checked').value);
+  }
 
   blueClimbScore += parseInt(document.querySelector('input[name="blue-1-climb"]:checked').value);
-  blueClimbScore += parseInt(document.querySelector('input[name="blue-2-climb"]:checked').value);
+  if(document.getElementById('blue-buddy-check').checked){
+    blueClimbScore += 2 * (parseInt(document.querySelector('input[name="blue-2-climb"]:checked').value));
+  }
+  else{
+    blueClimbScore += parseInt(document.querySelector('input[name="blue-2-climb"]:checked').value);
+  }
 
   return new ScoreDist(redClimbScore, blueClimbScore);
 }
