@@ -291,6 +291,7 @@ function score_alliance() {
 function score_high() {
   const high_stake = document.getElementById('high_stake');
   scores = score_stake(high_stake, MAX_HIGH_RINGS)
+  score_climb = new ScoreDist(0, 0)
 
   const red1Climb = parseInt(document.querySelector('input[name="red-1-climb"]:checked').value);
   const red2Climb = parseInt(document.querySelector('input[name="red-2-climb"]:checked').value);
@@ -302,17 +303,17 @@ function score_high() {
   const blueRingsOnHighStake = high_stake.querySelectorAll('.blue.ring').length;
 
   if (redRingsOnHighStake > 0) {
-    if (red1Climb > 0) scores.red += 2;
-    if (red2Climb > 0) scores.red += 2;
-    if(document.getElementById('red-buddy-check').checked) scores.red += 2
+    if (red1Climb > 0) score_climb.red += 2;
+    if (red2Climb > 0) score_climb.red += 2;
+    if(document.getElementById('red-buddy-check').checked) score_climb.red += 2
   }
   if (blueRingsOnHighStake > 0) {
-    if (blue1Climb > 0) scores.blue += 2;
-    if (blue2Climb > 0) scores.blue += 2;
-    if(document.getElementById('blue-buddy-check').checked) scores.blue += 2
+    if (blue1Climb > 0) score_climb.blue += 2;
+    if (blue2Climb > 0) score_climb.blue += 2;
+    if(document.getElementById('blue-buddy-check').checked) score_climb.blue += 2
   }
 
-  return scores;
+  return [scores, score_climb];
 }
 
 function score_neutral() {
@@ -323,7 +324,6 @@ function score_neutral() {
 
   return scores;
 }
-
 
 function get_auto_winner() {
   for (const [key, value] of Object.entries(auto_winner_buttons)) {
@@ -370,10 +370,10 @@ function recalculateAll() {
 
   const output = {
     'climb': calculateClimbScore(),
+    'high_stake': score_high(),
     'alliance_stakes': score_alliance(),
     'neutral_stakes': score_neutral(),
     'mobile_goals': score_mogos(),
-    'high_stake': score_high(),
     'auto': get_auto_points(),
   };
 
@@ -381,13 +381,23 @@ function recalculateAll() {
   let total_stakes = new ScoreDist(0, 0);
 
   for (const [key, value] of Object.entries(output)) {
-    output_cells[key].apply_points(value);
+    if (key === 'high_stake') {
+      output_cells[key].apply_points(value[0]);  // Apply high stake score to the display
+      total_stakes = total_stakes.add(value[0]); // Accumulate high stake score
+
+      total_climb_auto = total_climb_auto.add(value[1]); // Add climbing score from high stake
+      output_cells['climb'].apply_points(total_climb_auto);
+    } else {
+      output_cells[key].apply_points(value); // Apply other scores normally
+    }
 
     // Assign points to the appropriate total
     if (key === 'climb' || key === 'auto') {
       total_climb_auto = total_climb_auto.add(value);
     } else {
-      total_stakes = total_stakes.add(value);
+      if (key !== 'high_stake') {
+        total_stakes = total_stakes.add(value);
+      }
     }
   }
 
@@ -397,8 +407,8 @@ function recalculateAll() {
   total = new ScoreDist(0, 0);
   total.red = total_stakes.red + total_climb_auto.red;
   total.blue = total_stakes.blue + total_climb_auto.blue;
-  
-  total_cells.apply_points(total)
-  delta = total.red - total.blue
-  document.getElementById('delta_location').innerHTML = delta
+
+  total_cells.apply_points(total);
+  delta = total.red - total.blue;
+  document.getElementById('delta_location').innerHTML = delta;
 }
