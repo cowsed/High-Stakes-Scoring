@@ -1,8 +1,6 @@
-
 const RED_RINGS = 24;
 const BLUE_RINGS = 24;
 const NUM_MOBILE_GOALS = 5
-
 
 const MAX_ALLIANCE_RINGS = 2;
 const MAX_MOGO_RINGS = 6;
@@ -266,8 +264,8 @@ function score_stake(el, max_rings) {
         max_rings} rings`)
   }
 
-  if(dist.blue < 0) dist.blue = 0
-  if(dist.red < 0) dist.red = 0
+  // if(dist.blue < 0) dist.blue = 0
+  // if(dist.red < 0) dist.red = 0
   
   return dist;
 }
@@ -379,14 +377,26 @@ function recalculateAll() {
     'auto': get_auto_points(),
   };
 
-  total = new ScoreDist(0, 0);
+  let total_climb_auto = new ScoreDist(0, 0);
+  let total_stakes = new ScoreDist(0, 0);
+
   for (const [key, value] of Object.entries(output)) {
-    output_cells[key].apply_points(value)
-    total = total.add(value)
+    output_cells[key].apply_points(value);
+
+    // Assign points to the appropriate total
+    if (key === 'climb' || key === 'auto') {
+      total_climb_auto = total_climb_auto.add(value);
+    } else {
+      total_stakes = total_stakes.add(value);
+    }
   }
 
-  if(total.red < 0) total.red = 0
-  if(total.blue < 0) total.blue = 0
+  if (total_stakes.red < 0) total_stakes.red = 0;
+  if (total_stakes.blue < 0) total_stakes.blue = 0;
+
+  total = new ScoreDist(0, 0);
+  total.red = total_stakes.red + total_climb_auto.red;
+  total.blue = total_stakes.blue + total_climb_auto.blue;
   
   total_cells.apply_points(total)
   delta = total.red - total.blue
