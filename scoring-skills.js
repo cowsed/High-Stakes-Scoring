@@ -1,11 +1,13 @@
 const RED_RINGS = 24;
-const BLUE_RINGS = 24;
+const BLUE_RINGS = 11;
 const NUM_MOBILE_GOALS = 5
 
 const MAX_ALLIANCE_RINGS = 2;
 const MAX_MOGO_RINGS = 6;
 const MAX_NEUTRAL_RINGS = 6;
 const MAX_HIGH_RINGS = 1;
+
+const MAX_MOGO_CORNERS = 4;
 
 function error_text_append(str) {
   document.getElementById('error_messages').innerHTML += str + '<br>'
@@ -172,8 +174,7 @@ function newMobileGoal(id) {
   scoring_dropdown = `
     <select name="modifiers" onchange="recalculateAll()">
         <option value="1"> </option>
-        <option value="2">+</option>
-        <option value='-1'>-</option>
+        <option value="2">corner</option>
     </select>
     `
   dropdown = fromHTML(scoring_dropdown, true)
@@ -367,6 +368,27 @@ function calculateClimbScore() {
 
 function recalculateAll() {
   error_text_clear();
+
+  var cornerCount = 0;
+  const mobileGoalModifiers = document.querySelectorAll('.mobile_goal select');
+
+  mobileGoalModifiers.forEach((dropdown) => {
+    if (dropdown.value === "2") {
+      cornerCount++;
+    }
+  });
+
+  if (cornerCount > MAX_MOGO_CORNERS) {
+    error_text_append(`Only ${MAX_MOGO_CORNERS} mobile goals can have the "corner" modifier.`);
+
+    // Reset extra "corner" modifiers to empty
+    mobileGoalModifiers.forEach((dropdown) => {
+      if (cornerCount > MAX_MOGO_CORNERS && dropdown.value === "2") {
+        dropdown.value = "1"; // Set to empty or another default value
+        cornerCount--;
+      }
+    });
+  }
 
   const output = {
     'climb': calculateClimbScore(),
