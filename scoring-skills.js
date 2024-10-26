@@ -320,7 +320,6 @@ function recalculateAll() {
 
   if (cornerCount > MAX_MOGO_CORNERS) {
     error_text_append(`Only ${MAX_MOGO_CORNERS} mogos can go in corners [1 per corner].`);
-
     mobileGoalModifiers.forEach((dropdown) => {
       if (cornerCount > MAX_MOGO_CORNERS && dropdown.value === "2") {
         dropdown.value = "1";
@@ -330,7 +329,7 @@ function recalculateAll() {
   }
 
   const output = {
-    'climb': calculateClimbScore(),
+    'climb': calculateClimbScore(),  // Update climb score calculation
     'high_stake': score_high(),
     'alliance_stakes': score_alliance(),
     'neutral_stakes': score_neutral(),
@@ -344,9 +343,10 @@ function recalculateAll() {
     if (key === 'high_stake') {
       output_cells[key].apply_points(value[0].score);
       total_stakes_score = total_stakes_score.add(value[0]);
-
       total_climb_score = total_climb_score.add(value[1]);
-      output_cells['climb'].apply_points(total_climb_score.score);
+    } else if (key === 'climb') {
+      output_cells[key].apply_points(value.score);  // Apply climb score directly
+      total_climb_score = total_climb_score.add(value);
     } else {
       output_cells[key].apply_points(value.score);
       total_stakes_score = total_stakes_score.add(value);
