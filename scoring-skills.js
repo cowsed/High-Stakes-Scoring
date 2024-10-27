@@ -10,6 +10,7 @@ const MAX_HIGH_RINGS = 1;
 const MAX_MOGO_CORNERS = 4;
 
 var lastTotalRedRingsScored = 0;
+var red_worth_zero = false;
 
 var bottom_reds = {
   'mobile_goal_0': false,
@@ -220,13 +221,14 @@ function getTotalRedRingsScored(){
 
 function score_stake(el, max_rings){
   var score = new Score(0);
-  var first_el = true;
+  var first_el = false;
   var ring_count = 0;
   var red_rings = getTotalRedRingsScored();
   var has_red_below = false;
-  var count = 0;
+  var blue_top = false;
 
-  for(const ring of el.childNodes) {
+  for (let i = el.childNodes.length - 1; i >= 0; i--){
+    const ring = el.childNodes[i];
     if (!ring.classList.contains('ring')){
       continue;
     }
@@ -234,22 +236,33 @@ function score_stake(el, max_rings){
 
     const remainingRedRings = el.querySelectorAll('.red.ring').length > 0;
 
-    if (!remainingRedRings) {
+    if(!remainingRedRings){
       bottom_reds[el.id] = false;
       has_red_below = false;
     }
 
+    if(i === 0){
+      first_el = true;
+    }
+
     if(ring.classList.contains('red')){
-      if (first_el) {
-        ramt = 3;
-      } else {
-        ramt = 1;
+      if(!blue_top){
+        if(first_el){
+          ramt = 3;
+        } else {
+          ramt = 1;
+        }
+        has_red_below = true;
       }
+      else{
+        ramt = 0;
+        has_red_below = false;
+      }
+      
       score.score += ramt;
       ring.innerHTML = ramt;
 
       bottom_reds[el.id] = true;
-      has_red_below = true;
     }
 
     /**
@@ -259,8 +272,9 @@ function score_stake(el, max_rings){
      *    all red rings have been scored
      */
     if(ring.classList.contains('blue')){
-      let bamt = 0;
-      if(red_rings >= RED_RINGS && bottom_reds[el.id] && !has_red_below){
+      var bamt = 0;
+      blue_top = true;
+      if(red_rings >= RED_RINGS && bottom_reds[el.id] && has_red_below){
         bamt = first_el ? 3 : 1;
       }
       // error_text_append(`${el.id} bottom reds = ${bottom_reds[el.id]}`)
@@ -268,7 +282,19 @@ function score_stake(el, max_rings){
       ring.innerHTML = bamt.toString();
     }
 
-    first_el = false;
+    if(i === 1){
+      first_el = true;
+    }
+  }
+
+  for(const ring of el.childNodes){
+    if(ring.classList.contains('blue')){
+      if(red_ring_worth_zero()){
+        var bamt = 0;
+        score.score += bamt;
+        ring.innerHTML = bamt.toString();
+      }
+    }
   }
 
   if(ring_count > max_rings){
@@ -278,6 +304,16 @@ function score_stake(el, max_rings){
   }
 
   return score;
+}
+
+function red_ring_worth_zero(){
+  const redRings = document.querySelectorAll('.red.ring');
+  for(const ring of redRings){
+    if(ring.innerHTML === '0'){
+      return true; // Returns true if any red ring has a score of 0
+    }
+  }
+  return false; // Returns false if all red rings have a non-zero score
 }
 
 function score_mogos(){
@@ -353,6 +389,7 @@ function recalculateAll(){
 
   lastTotalRedRingsScored = currentTotalRedRingsScored;
 
+  // Calculate corner count and check for max corner rule
   var cornerCount = 0;
   const mobileGoalModifiers = document.querySelectorAll('.mobile_goal select');
 
@@ -371,6 +408,12 @@ function recalculateAll(){
       }
     });
   }
+
+  // Calculate the corner bonus points
+  const cornerBonus = 5 * cornerCount;
+
+  // Display the corner bonus in the designated cell
+  document.getElementById('score_mogo_corner_red').innerHTML = cornerBonus;
 
   const output = {
     'climb': calculateClimbScore(),  // Update climb score calculation
@@ -397,8 +440,10 @@ function recalculateAll(){
     }
   }
 
+  // Ensure the score doesn't go below zero
   if(total_stakes_score.score < 0) total_stakes_score.score = 0;
 
-  const total_score = total_stakes_score.add(total_climb_score);
+  // Add corner bonus to the total score
+  const total_score = total_stakes_score.add(total_climb_score).add(new Score(cornerBonus));
   total_cells.apply_points(total_score.score);
 }
