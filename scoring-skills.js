@@ -1,4 +1,4 @@
-const RED_RINGS = 24;
+const RED_RINGS = 5;
 const BLUE_RINGS = 11;
 const NUM_MOBILE_GOALS = 5
 
@@ -8,7 +8,21 @@ const MAX_NEUTRAL_RINGS = 6;
 const MAX_HIGH_RINGS = 1;
 
 const MAX_MOGO_CORNERS = 4;
+
 var lastTotalRedRingsScored = 0;
+
+var bottom_reds = {
+  'mobile_goal_0': false,
+  'mobile_goal_1': false,
+  'mobile_goal_2': false,
+  'mobile_goal_3': false,
+  'mobile_goal_4': false,
+  'neutral_stake_1': false,
+  'neutral_stake_2': false,
+  'red_alliance_stake': false,
+  'blue_alliance_stake': false,
+  'high_stake': false,
+};
 
 function error_text_append(str){
   document.getElementById('error_messages').innerHTML += str + '<br>'
@@ -227,19 +241,24 @@ function score_stake(el, max_rings){
       }
       score.score += ramt;
       ring.innerHTML = ramt;
+
+      if(bottom_reds[el.id] == false){
+        bottom_reds[el.id] = true;
+      }
     }
 
     /**
      * blue rings only earn points if --
-     *    scored as top ring
+     *    no red rings above blue ring
      *    at least one red ring scored below blue ring
      *    all red rings have been scored
      */
     if(ring.classList.contains('blue')){
       let bamt = 0;
-      if(red_rings >= RED_RINGS){
+      if(red_rings >= RED_RINGS && bottom_reds[el.id]){
         bamt = first_el ? 3 : 1;
       }
+      // error_text_append(`${el.id} bottom reds = ${bottom_reds[el.id]}`)
       score.score += bamt;
       ring.innerHTML = bamt.toString();
     }
