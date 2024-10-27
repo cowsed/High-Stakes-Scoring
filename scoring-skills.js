@@ -223,6 +223,8 @@ function score_stake(el, max_rings){
   var first_el = true;
   var ring_count = 0;
   var red_rings = getTotalRedRingsScored();
+  var has_red_below = false;
+  var count = 0;
 
   for(const ring of el.childNodes) {
     if (!ring.classList.contains('ring')){
@@ -234,6 +236,7 @@ function score_stake(el, max_rings){
 
     if (!remainingRedRings) {
       bottom_reds[el.id] = false;
+      has_red_below = false;
     }
 
     if(ring.classList.contains('red')){
@@ -245,9 +248,8 @@ function score_stake(el, max_rings){
       score.score += ramt;
       ring.innerHTML = ramt;
 
-      if(bottom_reds[el.id] == false){
-        bottom_reds[el.id] = true;
-      }
+      bottom_reds[el.id] = true;
+      has_red_below = true;
     }
 
     /**
@@ -258,7 +260,7 @@ function score_stake(el, max_rings){
      */
     if(ring.classList.contains('blue')){
       let bamt = 0;
-      if(red_rings >= RED_RINGS && bottom_reds[el.id]){
+      if(red_rings >= RED_RINGS && bottom_reds[el.id] && !has_red_below){
         bamt = first_el ? 3 : 1;
       }
       // error_text_append(`${el.id} bottom reds = ${bottom_reds[el.id]}`)
