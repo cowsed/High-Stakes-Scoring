@@ -1,4 +1,4 @@
-const RED_RINGS = 5;
+const RED_RINGS = 24;
 const BLUE_RINGS = 11;
 const NUM_MOBILE_GOALS = 5
 
