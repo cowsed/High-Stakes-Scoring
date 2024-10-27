@@ -98,9 +98,6 @@ function dropRing(ev){
 
 
 function ringNotThere(ev){
-  //   var data = ev.dataTransfer.getData('text');
-  //   el = document.getElementById(data)
-  //   el.classList.remove('ghost_ring')
   recalculateAll();
 }
 
@@ -232,6 +229,12 @@ function score_stake(el, max_rings){
       continue;
     }
     ring_count++;
+
+    const remainingRedRings = el.querySelectorAll('.red.ring').length > 0;
+
+    if (!remainingRedRings) {
+      bottom_reds[el.id] = false;
+    }
 
     if(ring.classList.contains('red')){
       if (first_el) {
