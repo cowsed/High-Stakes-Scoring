@@ -17,6 +17,11 @@
     --high-stake-height: calc(var(--ring-stacking-unit-height) * 1);
 }
 
+.split_screen_element {
+    padding: 1%;
+    width: 100%; /* Default to full width on mobile */
+}
+
 #error_messages {
     color: red;
 }
