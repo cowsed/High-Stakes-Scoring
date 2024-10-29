@@ -26,24 +26,11 @@
     vertical-align: bottom;
     margin: 1em;
     user-select: none;
-
 }
-
-#split_screen {
-    display: flex;
-}
-
-.split_screen_element {
-    padding: 1%;
-    width: 50%;
-}
-
 
 #rings_start {
-
     user-select: none;
     border: 1px solid gray;
-
 }
 
 .stake {
@@ -62,8 +49,6 @@
 
     user-select: none;
 }
-
-
 
 .alliance_stake {
     height: var(--alliance-stake-height);
@@ -93,8 +78,6 @@
     margin: 0.1em;
     text-align: center;
     user-select: none;
-
-
 }
 
 .red {
@@ -114,7 +97,6 @@
     background-color: white;
     border-spacing: 0px;
     border-collapse: collapse;
-
     text-align: center;
 }
 
@@ -143,7 +125,6 @@
     min-width: 2em;
 }
 
-
 .score-table td.neutral {
     background-color: white;
 }
@@ -154,4 +135,47 @@
 
 .score-table td.blue {
     background-color: var(--vex-blue-faded);
+}
+
+.selectors {
+    margin-top: 20px;
+}
+
+/* phone */
+@media only screen and (max-width: 600px) {
+    .split_screen_element {
+        padding: 1%;
+        width: 100%;
+    }
+
+    .table-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .buddy-climb {
+        display: block;
+        margin-top: 10px;
+    }
+}
+
+/* desktop */
+@media only screen and (min-width: 600px) {
+    #split_screen {
+        display: flex;
+    }
+    
+    .split_screen_element {
+        padding: 1%;
+        width: 50%;
+    }
+
+    .buddy-climb {
+        display:inline;
+        margin-top: 10px;
+    }
 }

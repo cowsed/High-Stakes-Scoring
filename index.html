@@ -39,135 +39,141 @@
                     ondrop="dropRing(event)"></div>
             </div>
 
-
-
             <div id="rings_start">
                 <div id="red_rings_start" class="ring_area" ondragover="allowDropRing(event)" ondrop="dropRing(event)">
                 </div>
                 <div id="blue_rings_start" class="ring_area" ondragover="allowDropRing(event)" ondrop="dropRing(event)">
                 </div>
             </div>
-            <span id="auto_win_selector">
-                Auto Winner:
-                <input type="radio" id="tie-radio" name="auto_winner" value="tie" checked="checked">
-                <label for="tie">Tie</label>
-
-                <input type="radio" id="red-radio" name="auto_winner" value="red">
-                <label for="red">Red</label>
-
-                <input type="radio" id="blue-radio" name="auto_winner" value="blue">
-                <label for="blue">Blue</label>
-            </span>
-            <br><br>
-            <span id="red_1_climb_selector" class="climb-selector">
-                Red 1 Climb:
-                <input type="radio" id="red-1-no-climb-radio" name="red-1-climb" value="0" checked="checked">
-                <label for="tie">No climb</label>
-
-                <input type="radio" id="red-1-climb-1-radio" name="red-1-climb" value="3">
-                <label for="tie">Level 1</label>
-
-                <input type="radio" id="red-1-climb-2-radio" name="red-1-climb" value="6">
-                <label for="tie">Level 2</label>
-                
-                <input type="radio" id="red-1-climb-3-radio" name="red-1-climb" value="12">
-                <label for="tie">Level 3</label>
-            </span>
-            <br>
-            <span id="red_2_climb_selector" class="climb-selector">
-                Red 2 Climb:
-                <input type="radio" id="red-2-no-climb-radio" name="red-2-climb" value="0" checked="checked">
-                <label for="tie">No climb</label>
-
-                <input type="radio" id="red-2-climb-1-radio" name="red-2-climb" value="3">
-                <label for="tie">Level 1</label>
-
-                <input type="radio" id="red-2-climb-2-radio" name="red-2-climb" value="6">
-                <label for="tie">Level 2</label>
-                
-                <input type="radio" id="red-2-climb-3-radio" name="red-2-climb" value="12">
-                <label for="tie">Level 3</label>
-
-                <input type="checkbox" id="red-buddy-check" name="red-buddy" value="2">
-                <label for="tie">Buddy Climb</label>
-            </span>
-            <br><br>
-            <span id="blue_1_climb_selector" class="climb-selector">
-                Blue 1 Climb:
-                <input type="radio" id="blue-1-no-climb-radio" name="blue-1-climb" value="0" checked="checked">
-                <label for="tie">No climb</label>
-
-                <input type="radio" id="blue-1-climb-1-radio" name="blue-1-climb" value="3">
-                <label for="tie">Level 1</label>
-
-                <input type="radio" id="blue-1-climb-2-radio" name="blue-1-climb" value="6">
-                <label for="tie">Level 2</label>
-                
-                <input type="radio" id="blue-1-climb-3-radio" name="blue-1-climb" value="12">
-                <label for="tie">Level 3</label>
-            </span>
-            <br>
-            <span id="blue_2_climb_selector" class="climb-selector">
-                Blue 2 Climb:
-                <input type="radio" id="blue-2-no-climb-radio" name="blue-2-climb" value="0" checked="checked">
-                <label for="tie">No climb</label>
-
-                <input type="radio" id="blue-2-climb-1-radio" name="blue-2-climb" value="3">
-                <label for="tie">Level 1</label>
-
-                <input type="radio" id="blue-2-climb-2-radio" name="blue-2-climb" value="6">
-                <label for="tie">Level 2</label>
-                
-                <input type="radio" id="blue-2-climb-3-radio" name="blue-2-climb" value="12">
-                <label for="tie">Level 3</label>
-
-                <input type="checkbox" id="blue-buddy-check" name="blue-buddy" value="2">
-                <label for="tie">Buddy Climb</label>
-            </span>
+            <div class="selectors">
+                <span id="auto_win_selector">
+                    Auto Winner:
+                    <input type="radio" id="tie-radio" name="auto_winner" value="tie" checked="checked">
+                    <label for="tie">Tie</label>
+    
+                    <input type="radio" id="red-radio" name="auto_winner" value="red">
+                    <label for="red">Red</label>
+    
+                    <input type="radio" id="blue-radio" name="auto_winner" value="blue">
+                    <label for="blue">Blue</label>
+                </span>
+                <br><br>
+                <span id="red_1_climb_selector" class="climb-selector">
+                    Red 1 Climb:
+                    <input type="radio" id="red-1-no-climb-radio" name="red-1-climb" value="0" checked="checked">
+                    <label for="tie">No climb</label>
+    
+                    <input type="radio" id="red-1-climb-1-radio" name="red-1-climb" value="3">
+                    <label for="tie">Level 1</label>
+    
+                    <input type="radio" id="red-1-climb-2-radio" name="red-1-climb" value="6">
+                    <label for="tie">Level 2</label>
+                    
+                    <input type="radio" id="red-1-climb-3-radio" name="red-1-climb" value="12">
+                    <label for="tie">Level 3</label>
+                </span>
+                <br>
+                <span id="red_2_climb_selector" class="climb-selector">
+                    Red 2 Climb:
+                    <input type="radio" id="red-2-no-climb-radio" name="red-2-climb" value="0" checked="checked">
+                    <label for="tie">No climb</label>
+    
+                    <input type="radio" id="red-2-climb-1-radio" name="red-2-climb" value="3">
+                    <label for="tie">Level 1</label>
+    
+                    <input type="radio" id="red-2-climb-2-radio" name="red-2-climb" value="6">
+                    <label for="tie">Level 2</label>
+                    
+                    <input type="radio" id="red-2-climb-3-radio" name="red-2-climb" value="12">
+                    <label for="tie">Level 3</label>
+    
+                    <div class="buddy-climb">
+                        <input type="checkbox" id="red-buddy-check" name="red-buddy" value="2">
+                        <label for="tie">Red Buddy Climb</label>
+                    </div>
+                </span>
+                <br><br>
+                <span id="blue_1_climb_selector" class="climb-selector">
+                    Blue 1 Climb:
+                    <input type="radio" id="blue-1-no-climb-radio" name="blue-1-climb" value="0" checked="checked">
+                    <label for="tie">No climb</label>
+    
+                    <input type="radio" id="blue-1-climb-1-radio" name="blue-1-climb" value="3">
+                    <label for="tie">Level 1</label>
+    
+                    <input type="radio" id="blue-1-climb-2-radio" name="blue-1-climb" value="6">
+                    <label for="tie">Level 2</label>
+                    
+                    <input type="radio" id="blue-1-climb-3-radio" name="blue-1-climb" value="12">
+                    <label for="tie">Level 3</label>
+                </span>
+                <br>
+                <span id="blue_2_climb_selector" class="climb-selector">
+                    Blue 2 Climb:
+                    <input type="radio" id="blue-2-no-climb-radio" name="blue-2-climb" value="0" checked="checked">
+                    <label for="tie">No climb</label>
+    
+                    <input type="radio" id="blue-2-climb-1-radio" name="blue-2-climb" value="3">
+                    <label for="tie">Level 1</label>
+    
+                    <input type="radio" id="blue-2-climb-2-radio" name="blue-2-climb" value="6">
+                    <label for="tie">Level 2</label>
+                    
+                    <input type="radio" id="blue-2-climb-3-radio" name="blue-2-climb" value="12">
+                    <label for="tie">Level 3</label>
+                    
+                    <div class="buddy-climb">
+                        <input type="checkbox" id="blue-buddy-check" name="blue-buddy" value="2">
+                        <label for="blue-buddy-check">Blue Buddy Climb</label>
+                    </div>
+                </span>
+            </div>
         </div>
         <!-- Scoring Breakdown-->
         <div id="scoring" class="split_screen_element">
-            <table class="score-table">
-                <tr>
-                    <td class="neutral">Climb</td>
-                    <td class="red" id="score_climb_red">10</td>
-                    <td class="blue" id="score_climb_blue">10</td>
-                </tr>
-                <tr>
-                    <td class="neutral">Alliance Stakes</td>
-                    <td class="red" id="score_alliance_red">4</td>
-                    <td class="blue" id="score_alliance_blue">3</td>
-                </tr>
-                <tr>
-                    <td class="neutral">Neutral Stakes</td>
-                    <td class="red" id="score_neutral_red">4</td>
-                    <td class="blue" id="score_neutral_blue">3</td>
-                </tr>
-                <tr>
-                    <td class="neutral">Mobile Goals</td>
-                    <td class="red" id="score_mogo_red">4</td>
-                    <td class="blue" id="score_mogo_blue">3</td>
-                </tr>
-                <tr>
-                    <td class="neutral">High Stake</td>
-                    <td class="red" id="score_high_red">4</td>
-                    <td class="blue" id="score_high_blue">3</td>
-                </tr>
-                <tr>
-                    <td class="neutral">Auto</td>
-                    <td class="red" id="score_auto_red">3</td>
-                    <td class="blue" id="score_auto_blue">3</td>
-                </tr>
-                <tr>
-                    <th class="neutral">Final</td>
-                    <th class="red" id="score_full_red">3</td>
-                    <th class="blue" id="score_full_blue">3</td>
-                </tr>
-
-            </table>
-            <div>Delta: <span id="delta_location"></span></div>
-            <button onclick="window.location.reload()">Reset</button>
-            <div id="error_messages"></div>
+            <div class="table-container">
+                <table class="score-table">
+                    <tr>
+                        <td class="neutral">Climb</td>
+                        <td class="red" id="score_climb_red">10</td>
+                        <td class="blue" id="score_climb_blue">10</td>
+                    </tr>
+                    <tr>
+                        <td class="neutral">Alliance Stakes</td>
+                        <td class="red" id="score_alliance_red">4</td>
+                        <td class="blue" id="score_alliance_blue">3</td>
+                    </tr>
+                    <tr>
+                        <td class="neutral">Neutral Stakes</td>
+                        <td class="red" id="score_neutral_red">4</td>
+                        <td class="blue" id="score_neutral_blue">3</td>
+                    </tr>
+                    <tr>
+                        <td class="neutral">Mobile Goals</td>
+                        <td class="red" id="score_mogo_red">4</td>
+                        <td class="blue" id="score_mogo_blue">3</td>
+                    </tr>
+                    <tr>
+                        <td class="neutral">High Stake</td>
+                        <td class="red" id="score_high_red">4</td>
+                        <td class="blue" id="score_high_blue">3</td>
+                    </tr>
+                    <tr>
+                        <td class="neutral">Auto</td>
+                        <td class="red" id="score_auto_red">3</td>
+                        <td class="blue" id="score_auto_blue">3</td>
+                    </tr>
+                    <tr>
+                        <th class="neutral">Final</td>
+                        <th class="red" id="score_full_red">3</td>
+                        <th class="blue" id="score_full_blue">3</td>
+                    </tr>
+    
+                </table>
+                <div>Delta: <span id="delta_location"></span></div>
+                <button onclick="window.location.reload()">Reset</button>
+                <div id="error_messages"></div>
+            </div>
         </div>
     </div>
 
