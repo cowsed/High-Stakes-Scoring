@@ -234,7 +234,6 @@ function score_stake(el, max_rings) {
     const isAllianceStakeRed = el.classList.contains('red');
     const isAllianceStakeBlue = el.classList.contains('blue');
 
-    // Check for incorrect color rings on alliance stakes
     if ((isRedRing && isAllianceStakeBlue) || (isBlueRing && isAllianceStakeRed)) {
       ring.innerHTML = '0';
       lastRingWrongColor = true;
@@ -244,7 +243,6 @@ function score_stake(el, max_rings) {
 
     if (isRedRing || isBlueRing) {
       let points = first_el ? 3 : 1;
-      // If the ring is underneath a wrong-color top ring, assign it 3 points.
       if (lastRingWrongColor) {
         points = 3;
       }
@@ -257,7 +255,6 @@ function score_stake(el, max_rings) {
         ring.innerHTML = points * modifier;
       }
 
-      // Reset the wrong color flag after assigning the points.
       lastRingWrongColor = false;
       first_el = false;
     }
