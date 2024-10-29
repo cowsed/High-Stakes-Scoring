@@ -367,6 +367,42 @@ function calculateClimbScore() {
 
 function recalculateAll() {
   error_text_clear();
+  
+  var posCornerCount = 0;
+  var negCornerCount = 0;
+  const mobileGoalModifiers = document.querySelectorAll('.mobile_goal select');
+
+  mobileGoalModifiers.forEach((dropdown) => {
+    if(dropdown.value === "2") {
+      posCornerCount++;
+    }
+  });
+
+  mobileGoalModifiers.forEach((dropdown) => {
+    if(dropdown.value === "-1") {
+      negCornerCount++;
+    }
+  });
+
+  if(posCornerCount > 2){
+    error_text_append(`Only 1 mogo per corner.`);
+    mobileGoalModifiers.forEach((dropdown) => {
+      if (posCornerCount > 2 && dropdown.value === "2") {
+        dropdown.value = "1";
+        posCornerCount--;
+      }
+    });
+  }
+
+  if(negCornerCount > 2){
+    error_text_append(`Only 1 mogo per corner.`);
+    mobileGoalModifiers.forEach((dropdown) => {
+      if (negCornerCount > 2 && dropdown.value === "-1") {
+        dropdown.value = "1";
+        negCornerCount--;
+      }
+    });
+  }
 
   const output = {
     'climb': calculateClimbScore(),
