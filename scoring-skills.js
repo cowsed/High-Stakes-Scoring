@@ -11,6 +11,7 @@ const MAX_MOGO_CORNERS = 4;
 
 var lastTotalRedRingsScored = 0;
 var red_worth_zero = false;
+var appendedErrors = [];
 
 var bottom_reds = {
   'mobile_goal_0': false,
@@ -26,11 +27,15 @@ var bottom_reds = {
 };
 
 function error_text_append(str){
-  document.getElementById('error_messages').innerHTML += str + '<br>'
+  if (!appendedErrors.includes(str)) {
+    document.getElementById('error_messages').innerHTML += str + '<br>';
+    appendedErrors.push(str); 
+  }
 }
 
 function error_text_clear(){
-  document.getElementById('error_messages').innerHTML = ''
+  document.getElementById('error_messages').innerHTML = '';
+  appendedErrors = [];
 }
 
 class Score{
@@ -257,6 +262,7 @@ function score_stake(el, max_rings){
       else{
         ramt = 0;
         has_red_below = false;
+        error_text_append('Red rings scored above blue rings earn 0 points.')
       }
       
       score.score += ramt;
@@ -277,7 +283,14 @@ function score_stake(el, max_rings){
       if(red_rings >= RED_RINGS && bottom_reds[el.id] && has_red_below){
         bamt = first_el ? 3 : 1;
       }
-      // error_text_append(`${el.id} bottom reds = ${bottom_reds[el.id]}`)
+      else{
+        if(red_rings < RED_RINGS){
+          error_text_append(`Not all red rings scored. All blue rings worth 0 until all red rings scored.`);
+        }
+        if(!has_red_below){
+          error_text_append(`Blue rings scored below red rings earn 0 points.`);
+        }
+      }
       score.score += bamt;
       ring.innerHTML = bamt.toString();
     }

@@ -238,6 +238,7 @@ function score_stake(el, max_rings) {
       ring.innerHTML = '0';
       lastRingWrongColor = true;
       first_el = false;
+      error_text_append(`Rings of the wrong color on alliance wall stakes earn 0 points.`);
       continue;
     }
 
