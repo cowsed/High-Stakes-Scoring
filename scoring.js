@@ -447,5 +447,8 @@ function recalculateAll() {
 
   total_cells.apply_points(total);
   delta = total.red - total.blue;
+  
   document.getElementById('delta_location').innerHTML = delta;
+  document.getElementById('top_score_red').innerHTML = total.red;
+  document.getElementById('top_score_blue').innerHTML = total.blue;
 }

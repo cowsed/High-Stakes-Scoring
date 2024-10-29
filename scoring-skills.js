@@ -454,4 +454,5 @@ function recalculateAll(){
 
   const total_score = total_stakes_score.add(total_climb_score).add(new Score(cornerBonus));
   total_cells.apply_points(total_score.score);
+  document.getElementById('top_score_red').innerHTML = total_score.score;
 }

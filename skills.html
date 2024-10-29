@@ -12,22 +12,17 @@
 
 <body>
     <p>
-        Skills scoring. Drag and drop rings onto stakes. Theoretically correct.
+        <b>VURC Skills Scoring Calculator</b>
         <br>
-        Differences from match scoring:
-        <ul>
-            <li>11 blue rings</li>
-            <li>blue rings can only earn points if:</li>
-            <ul>
-                <li>no red rings above blue ring</li>
-                <li>at least one red ring scored below blue ring</li>
-                <li>all red rings have been scored</li>
-            </ul>
-            <li>mogos in corners earn 5 points instead of having +/- modifiers</li>
-        </ul>
+        Drag and drop rings onto stakes
         <br>
         Click <a href="index.html">here</a> for match scoring.
     </p>
+
+    <div class="top-score">
+        <h2 id="top_score_red">0</h2>
+    </div>
+
     <div id="split_screen">
         <div id="setup" class="split_screen_element">
             <div id="mobile_goals_start" class="stake_area">
@@ -88,47 +83,51 @@
                 <input type="radio" id="red-2-climb-3-radio" name="red-2-climb" value="12">
                 <label for="tie">Level 3</label>
 
-                <input type="checkbox" id="red-buddy-check" name="red-buddy" value="2">
-                <label for="tie">Buddy Climb</label>
+                <div class="buddy-climb">
+                    <input type="checkbox" id="red-buddy-check" name="red-buddy" value="2">
+                    <label for="tie">Buddy Climb</label>
+                </div>
             </span>
         </div>
         <!-- Scoring Breakdown-->
         <div id="scoring" class="split_screen_element">
-            <table class="score-table">
-                <tr>
-                    <td class="neutral">Climb</td>
-                    <td class="red" id="score_climb_red">10</td>
-                </tr>
-                <tr>
-                    <td class="neutral">Alliance Stakes</td>
-                    <td class="red" id="score_alliance_red">4</td>
-                </tr>
-                <tr>
-                    <td class="neutral">Neutral Stakes</td>
-                    <td class="red" id="score_neutral_red">4</td>
-                </tr>
-                <tr>
-                    <td class="neutral">Mobile Goals</td>
-                    <td class="red" id="score_mogo_red">4</td>
-                </tr>
-                <tr>
-                    <td class="neutral">High Stake</td>
-                    <td class="red" id="score_high_red">4</td>
-                </tr>
-                <tr>
-                    <td class="neutral">Mogo Corner</td>
-                    <td class="red" id="score_mogo_corner_red">4</td>
-                </tr>
-                <tr>
-                    <th class="neutral">Final</td>
-                    <th class="red" id="score_full_red">3</td>
-                </tr>
+            <div class="table-container">
+                <table class="score-table">
+                    <tr>
+                        <td class="neutral">Climb</td>
+                        <td class="red" id="score_climb_red">10</td>
+                    </tr>
+                    <tr>
+                        <td class="neutral">Alliance Stakes</td>
+                        <td class="red" id="score_alliance_red">4</td>
+                    </tr>
+                    <tr>
+                        <td class="neutral">Neutral Stakes</td>
+                        <td class="red" id="score_neutral_red">4</td>
+                    </tr>
+                    <tr>
+                        <td class="neutral">Mobile Goals</td>
+                        <td class="red" id="score_mogo_red">4</td>
+                    </tr>
+                    <tr>
+                        <td class="neutral">High Stake</td>
+                        <td class="red" id="score_high_red">4</td>
+                    </tr>
+                    <tr>
+                        <td class="neutral">Mogo Corner</td>
+                        <td class="red" id="score_mogo_corner_red">4</td>
+                    </tr>
+                    <tr>
+                        <th class="neutral">Final</td>
+                        <th class="red" id="score_full_red">3</td>
+                    </tr>
 
-            </table>
-            <br>
-            <button onclick="window.location.reload()">Reset</button>
-            <br>
-            <div id="error_messages"></div>
+                </table>
+                <br>
+                <button onclick="window.location.reload()">Reset</button>
+                <br>
+                <div id="error_messages"></div>
+            </div>
         </div>
     </div>
 

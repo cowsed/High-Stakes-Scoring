@@ -25,6 +25,7 @@
     display: inline-flex;
     vertical-align: bottom;
     margin: 1em;
+    margin-top: 0;
     user-select: none;
 }
 
@@ -141,6 +142,44 @@
     margin-top: 20px;
 }
 
+button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#error_messages {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.top-score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    padding: 0;
+    margin: 0;
+}
+
+#top_score_red {
+    color: red;
+}
+
+#top_score_blue {
+    color: rgb(0, 106, 255);
+}
+
+p {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.top-score h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 /* phone */
 @media only screen and (max-width: 600px) {
     .split_screen_element {
@@ -161,6 +200,15 @@
         display: block;
         margin-top: 10px;
     }
+
+    #error_messages {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .top-score {
+        width: 100%;
+    }
 }
 
 /* desktop */
@@ -177,5 +225,9 @@
     .buddy-climb {
         display:inline;
         margin-top: 10px;
+    }
+
+    .top-score {
+        width: 50%;
     }
 }
