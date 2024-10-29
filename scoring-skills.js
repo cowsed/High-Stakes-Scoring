@@ -323,10 +323,10 @@ function red_ring_worth_zero(){
   const redRings = document.querySelectorAll('.red.ring');
   for(const ring of redRings){
     if(ring.innerHTML === '0'){
-      return true; // Returns true if any red ring has a score of 0
+      return true;
     }
   }
-  return false; // Returns false if all red rings have a non-zero score
+  return false;
 }
 
 function score_mogos(){
@@ -402,7 +402,6 @@ function recalculateAll(){
 
   lastTotalRedRingsScored = currentTotalRedRingsScored;
 
-  // Calculate corner count and check for max corner rule
   var cornerCount = 0;
   const mobileGoalModifiers = document.querySelectorAll('.mobile_goal select');
 
@@ -422,14 +421,12 @@ function recalculateAll(){
     });
   }
 
-  // Calculate the corner bonus points
   const cornerBonus = 5 * cornerCount;
 
-  // Display the corner bonus in the designated cell
   document.getElementById('score_mogo_corner_red').innerHTML = cornerBonus;
 
   const output = {
-    'climb': calculateClimbScore(),  // Update climb score calculation
+    'climb': calculateClimbScore(),
     'high_stake': score_high(),
     'alliance_stakes': score_alliance(),
     'neutral_stakes': score_neutral(),
@@ -445,7 +442,7 @@ function recalculateAll(){
       total_stakes_score = total_stakes_score.add(value[0]);
       total_climb_score = total_climb_score.add(value[1]);
     } else if(key === 'climb'){
-      output_cells[key].apply_points(value.score);  // Apply climb score directly
+      output_cells[key].apply_points(value.score);
       total_climb_score = total_climb_score.add(value);
     } else{
       output_cells[key].apply_points(value.score);
@@ -453,10 +450,8 @@ function recalculateAll(){
     }
   }
 
-  // Ensure the score doesn't go below zero
   if(total_stakes_score.score < 0) total_stakes_score.score = 0;
 
-  // Add corner bonus to the total score
   const total_score = total_stakes_score.add(total_climb_score).add(new Score(cornerBonus));
   total_cells.apply_points(total_score.score);
 }
