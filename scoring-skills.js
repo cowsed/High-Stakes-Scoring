@@ -413,7 +413,7 @@ function recalculateAll(){
   });
 
   if(cornerCount > MAX_MOGO_CORNERS){
-    error_text_append(`Only ${MAX_MOGO_CORNERS} mogos can go in corners [1 per corner].`);
+    error_text_append(`Only 1 mogo per corner.`);
     mobileGoalModifiers.forEach((dropdown) => {
       if (cornerCount > MAX_MOGO_CORNERS && dropdown.value === "2") {
         dropdown.value = "1";
