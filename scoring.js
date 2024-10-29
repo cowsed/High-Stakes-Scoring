@@ -220,6 +220,7 @@ function score_stake(el, max_rings) {
   }
 
   var first_el = true;
+  var lastRingWrongColor = false;
   var ring_count = 0;
 
   for (const ring of el.childNodes) {
@@ -228,47 +229,49 @@ function score_stake(el, max_rings) {
     }
     ring_count++;
 
-    // Don't score wrong color rings on alliance stakes
-    if ((ring.classList.contains('red') && el.classList.contains('blue')) || 
-        (ring.classList.contains('blue') && el.classList.contains('red'))) {
+    const isRedRing = ring.classList.contains('red');
+    const isBlueRing = ring.classList.contains('blue');
+    const isAllianceStakeRed = el.classList.contains('red');
+    const isAllianceStakeBlue = el.classList.contains('blue');
+
+    // Check for incorrect color rings on alliance stakes
+    if ((isRedRing && isAllianceStakeBlue) || (isBlueRing && isAllianceStakeRed)) {
       ring.innerHTML = '0';
+      lastRingWrongColor = true;
       first_el = false;
       continue;
     }
 
-    if (ring.classList.contains('red')) {
-      if (first_el) {
-        ramt = 3;
-      } else {
-        ramt = 1;
+    if (isRedRing || isBlueRing) {
+      let points = first_el ? 3 : 1;
+      // If the ring is underneath a wrong-color top ring, assign it 3 points.
+      if (lastRingWrongColor) {
+        points = 3;
       }
-      dist.red += ramt * modifier;
-      ring.innerHTML = ramt * modifier;
-    }
 
-    if (ring.classList.contains('blue')) {
-      if (first_el) {
-        bamt = 3;
-      } else {
-        bamt = 1;
+      if (isRedRing) {
+        dist.red += points * modifier;
+        ring.innerHTML = points * modifier;
+      } else if (isBlueRing) {
+        dist.blue += points * modifier;
+        ring.innerHTML = points * modifier;
       }
-      dist.blue += bamt * modifier;
-      ring.innerHTML = bamt * modifier;
-    }
 
-    first_el = false;
+      // Reset the wrong color flag after assigning the points.
+      lastRingWrongColor = false;
+      first_el = false;
+    }
   }
+
   if (ring_count > max_rings) {
     stake_id = el.id.replaceAll('_', ' ');
     error_text_append(`${ring_count} rings on <b>${stake_id}</b> which takes ${
         max_rings} rings`)
   }
 
-  // if(dist.blue < 0) dist.blue = 0
-  // if(dist.red < 0) dist.red = 0
-  
   return dist;
 }
+
 
 function score_mogos() {
   scores = new ScoreDist(0, 0);
