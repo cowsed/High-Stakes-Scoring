@@ -89,16 +89,6 @@ function ringNotThere(ev) {
   recalculateAll();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const climbSelectors = document.querySelectorAll('.climb-selector select, .climb-selector input[type="checkbox"]');
-
-  climbSelectors.forEach((input) => {
-      input.addEventListener('change', () => {
-          recalculateAll();
-      });
-  });
-});
-
 window.addEventListener('DOMContentLoaded', (event) => {
   auto_winner_buttons = {
     'tie': document.getElementById('tie-radio'),
@@ -127,6 +117,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   add_rings();
   add_mogos();
+
+  climbSelectors = document.querySelectorAll('.climb-selector select, .climb-selector input[type="checkbox"]');
+
+  climbSelectors.forEach((input) => {
+      input.addEventListener('change', () => {
+          recalculateAll();
+      });
+  });
 
   recalculateAll();
 })
