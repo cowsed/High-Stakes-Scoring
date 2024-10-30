@@ -30,7 +30,6 @@
     display: inline-flex;
     vertical-align: bottom;
     margin: 1em;
-    margin-top: 0;
     user-select: none;
 }
 
@@ -213,6 +212,14 @@ p {
 
     .top-score {
         width: 100%;
+    }
+
+    .stake_area {
+        display: inline-flex;
+        vertical-align: bottom;
+        margin-left: 0;
+        margin-right: 0;
+        user-select: none;
     }
 }
 
