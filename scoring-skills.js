@@ -108,20 +108,13 @@ function ringNotThere(ev){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const climbSelectors = document.querySelectorAll('.climb-selector input[type="radio"]');
-  const buddySelectors = document.querySelectorAll('.climb-selector input[type="checkbox"]');
-  
-  climbSelectors.forEach((radio) => {
-      radio.addEventListener('change', () => {
+  const climbSelectors = document.querySelectorAll('.climb-selector select, .climb-selector input[type="checkbox"]');
+
+  climbSelectors.forEach((input) => {
+      input.addEventListener('change', () => {
           recalculateAll();
       });
   });
-
-  buddySelectors.forEach((radio) => {
-    radio.addEventListener('change', () => {
-        recalculateAll();
-    });
-});
 });
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -352,8 +345,8 @@ function score_high(){
   var score = score_stake(high_stake, MAX_HIGH_RINGS);
   var score_climb = new Score(0);
 
-  const red1Climb = parseInt(document.querySelector('input[name="red-1-climb"]:checked').value);
-  const red2Climb = parseInt(document.querySelector('input[name="red-2-climb"]:checked').value);
+  const red1Climb = parseInt(document.getElementById('red-1-climb').value);
+  const red2Climb = parseInt(document.getElementById('red-2-climb').value);
 
   const redRingsOnHighStake = high_stake.querySelectorAll('.red.ring').length;
 
@@ -378,13 +371,13 @@ function score_neutral(){
 function calculateClimbScore(){
   var score = 0;
 
-  score += parseInt(document.querySelector('input[name="red-1-climb"]:checked').value);
+  score += parseInt(document.getElementById('red-1-climb').value);
 
   if(document.getElementById('red-buddy-check').checked){
-    score += 2 * (parseInt(document.querySelector('input[name="red-2-climb"]:checked').value));
+    score += 2 * (parseInt(document.getElementById('red-2-climb').value));
   }
   else{
-    score += parseInt(document.querySelector('input[name="red-2-climb"]:checked').value);
+    score += parseInt(document.getElementById('red-2-climb').value);
   }
 
   return new Score(score);

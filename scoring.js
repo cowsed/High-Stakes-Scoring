@@ -90,20 +90,13 @@ function ringNotThere(ev) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const climbSelectors = document.querySelectorAll('.climb-selector input[type="radio"]');
-  const buddySelectors = document.querySelectorAll('.climb-selector input[type="checkbox"]');
-  
-  climbSelectors.forEach((radio) => {
-      radio.addEventListener('change', () => {
+  const climbSelectors = document.querySelectorAll('.climb-selector select, .climb-selector input[type="checkbox"]');
+
+  climbSelectors.forEach((input) => {
+      input.addEventListener('change', () => {
           recalculateAll();
       });
   });
-
-  buddySelectors.forEach((radio) => {
-    radio.addEventListener('change', () => {
-        recalculateAll();
-    });
-});
 });
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -294,10 +287,10 @@ function score_high() {
   scores = score_stake(high_stake, MAX_HIGH_RINGS)
   score_climb = new ScoreDist(0, 0)
 
-  const red1Climb = parseInt(document.querySelector('input[name="red-1-climb"]:checked').value);
-  const red2Climb = parseInt(document.querySelector('input[name="red-2-climb"]:checked').value);
-  const blue1Climb = parseInt(document.querySelector('input[name="blue-1-climb"]:checked').value);
-  const blue2Climb = parseInt(document.querySelector('input[name="blue-2-climb"]:checked').value);
+  const red1Climb = parseInt(document.getElementById('red-1-climb').value);
+  const red2Climb = parseInt(document.getElementById('red-2-climb').value);
+  const blue1Climb = parseInt(document.getElementById('blue-1-climb').value);
+  const blue2Climb = parseInt(document.getElementById('blue-2-climb').value);
 
 
   const redRingsOnHighStake = high_stake.querySelectorAll('.red.ring').length;
@@ -347,20 +340,20 @@ function calculateClimbScore() {
   var redClimbScore = 0;
   var blueClimbScore = 0;
 
-  redClimbScore += parseInt(document.querySelector('input[name="red-1-climb"]:checked').value);
+  redClimbScore += parseInt(document.getElementById('red-1-climb').value);
   if(document.getElementById('red-buddy-check').checked){
-    redClimbScore += 2 * (parseInt(document.querySelector('input[name="red-2-climb"]:checked').value));
+    redClimbScore += 2 * parseInt(document.getElementById('red-2-climb').value);
   }
   else{
-    redClimbScore += parseInt(document.querySelector('input[name="red-2-climb"]:checked').value);
+    redClimbScore += parseInt(document.getElementById('red-2-climb').value);
   }
 
-  blueClimbScore += parseInt(document.querySelector('input[name="blue-1-climb"]:checked').value);
+  blueClimbScore += parseInt(document.getElementById('blue-1-climb').value);
   if(document.getElementById('blue-buddy-check').checked){
-    blueClimbScore += 2 * (parseInt(document.querySelector('input[name="blue-2-climb"]:checked').value));
+    blueClimbScore += 2 * parseInt(document.getElementById('blue-2-climb').value);
   }
   else{
-    blueClimbScore += parseInt(document.querySelector('input[name="blue-2-climb"]:checked').value);
+    blueClimbScore += parseInt(document.getElementById('blue-2-climb').value);
   }
 
   return new ScoreDist(redClimbScore, blueClimbScore);
