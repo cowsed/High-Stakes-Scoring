@@ -261,6 +261,10 @@ footer p {
     footer {
         text-align: center;
     }
+
+    #buddy-label {
+        visibility: visible;
+    }
 }
 
 /* desktop */
@@ -289,5 +293,9 @@ footer p {
 
     .top-score {
         width: 50%;
+    }
+
+    #buddy-label {
+        visibility: hidden;
     }
 }
