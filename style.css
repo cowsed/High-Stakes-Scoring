@@ -37,6 +37,14 @@ header {
     min-height: 25px;
 }
 
+#logo {
+    position:absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: auto;
+}
+
 main {
     flex: 1;
 }
