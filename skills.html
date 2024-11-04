@@ -14,115 +14,121 @@
 </head>
 
 <body>
-    <p>
-        <b>VURC Skills Scoring Calculator</b>
-        <br>
-        Drag and drop rings onto stakes
-        <br>
-        Click <a href="index.html">here</a> for match scoring.
-    </p>
-
-    <div class="top-score">
-        <h2 id="top_score_red">0</h2>
-    </div>
-
-    <div id="split_screen">
-        <div id="setup" class="split_screen_element">
-            <div id="mobile_goals_start" class="stake_area">
-            </div>
-            <div id="neutral_stakes" class="stake_area">
-                <div class="stake neutral_stake" id="neutral_stake_1" ondragover="allowDropRing(event)"
-                    ondrop="dropRing(event)"></div>
-                <div class=" stake neutral_stake" id="neutral_stake_2" ondragover="allowDropRing(event)"
-                    ondrop="dropRing(event)"></div>
-            </div>
-
-            <div id="alliance_stakes" class="stake_area">
-                <div class="stake alliance_stake red" id="red_alliance_stake" ondragover="allowDropRing(event)"
-                    ondrop="dropRing(event)"></div>
-                <div class=" stake alliance_stake blue" id="blue_alliance_stake" ondragover="allowDropRing(event)"
-                    ondrop="dropRing(event)"></div>
-            </div>
-
-            <div id="high_stake_holder" class="stake_area">
-                <div class="stake high_stake" id="high_stake" ondragover="allowDropRing(event)"
-                    ondrop="dropRing(event)"></div>
-            </div>
-
-            <div id="rings_start">
-                <div id="red_rings_start" class="ring_area" ondragover="allowDropRing(event)" ondrop="dropRing(event)">
-                </div>
-                <div id="blue_rings_start" class="ring_area" ondragover="allowDropRing(event)" ondrop="dropRing(event)">
-                </div>
-            </div>
-
-            <br><br>
-            <span id="red_1_climb_selector" class="climb-selector">
-                Red 1 Climb:
-                <select id="red-1-climb" name="red-1-climb">
-                    <option value="0" selected>No climb</option>
-                    <option value="3">Level 1</option>
-                    <option value="6">Level 2</option>
-                    <option value="12">Level 3</option>
-                </select>
-            </span>
+    <header>
+        <p>
+            <b>VURC Skills Scoring Calculator</b>
             <br>
-            <span id="red_2_climb_selector" class="climb-selector">
-                Red 2 Climb:
-                <select id="red-2-climb" name="red-2-climb">
-                    <option value="0" selected>No climb</option>
-                    <option value="3">Level 1</option>
-                    <option value="6">Level 2</option>
-                    <option value="12">Level 3</option>
-                </select>
-
-                <div class="buddy-climb">
-                    <input type="checkbox" id="red-buddy-check" name="red-buddy" value="2">
-                    <label for="tie">Buddy Climb</label>
-                </div>
-            </span>
+            Drag and drop rings onto stakes
+            <br>
+            Click <a href="index.html">here</a> for match scoring.
+        </p>
+    </header>
+    <main>
+        <div class="top-score">
+            <h2 id="top_score_red">0</h2>
         </div>
-        <!-- Scoring Breakdown-->
-        <div id="scoring" class="split_screen_element">
-            <div class="table-container">
-                <table class="score-table">
-                    <tr>
-                        <td class="neutral">Climb</td>
-                        <td class="red" id="score_climb_red">10</td>
-                    </tr>
-                    <tr>
-                        <td class="neutral">Alliance Stakes</td>
-                        <td class="red" id="score_alliance_red">4</td>
-                    </tr>
-                    <tr>
-                        <td class="neutral">Neutral Stakes</td>
-                        <td class="red" id="score_neutral_red">4</td>
-                    </tr>
-                    <tr>
-                        <td class="neutral">Mobile Goals</td>
-                        <td class="red" id="score_mogo_red">4</td>
-                    </tr>
-                    <tr>
-                        <td class="neutral">High Stake</td>
-                        <td class="red" id="score_high_red">4</td>
-                    </tr>
-                    <tr>
-                        <td class="neutral">Mogo Corner</td>
-                        <td class="red" id="score_mogo_corner_red">4</td>
-                    </tr>
-                    <tr>
-                        <th class="neutral">Final</td>
-                        <th class="red" id="score_full_red">3</td>
-                    </tr>
+        <div id="split_screen">
+            <div id="setup" class="split_screen_element">
+                <div id="mobile_goals_start" class="stake_area">
+                </div>
+                <div id="neutral_stakes" class="stake_area">
+                    <div class="stake neutral_stake" id="neutral_stake_1" ondragover="allowDropRing(event)"
+                        ondrop="dropRing(event)"></div>
+                    <div class=" stake neutral_stake" id="neutral_stake_2" ondragover="allowDropRing(event)"
+                        ondrop="dropRing(event)"></div>
+                </div>
 
-                </table>
+                <div id="alliance_stakes" class="stake_area">
+                    <div class="stake alliance_stake red" id="red_alliance_stake" ondragover="allowDropRing(event)"
+                        ondrop="dropRing(event)"></div>
+                    <div class=" stake alliance_stake blue" id="blue_alliance_stake" ondragover="allowDropRing(event)"
+                        ondrop="dropRing(event)"></div>
+                </div>
+
+                <div id="high_stake_holder" class="stake_area">
+                    <div class="stake high_stake" id="high_stake" ondragover="allowDropRing(event)"
+                        ondrop="dropRing(event)"></div>
+                </div>
+
+                <div id="rings_start">
+                    <div id="red_rings_start" class="ring_area" ondragover="allowDropRing(event)" ondrop="dropRing(event)">
+                    </div>
+                    <div id="blue_rings_start" class="ring_area" ondragover="allowDropRing(event)" ondrop="dropRing(event)">
+                    </div>
+                </div>
+
+                <br><br>
+                <span id="red_1_climb_selector" class="climb-selector">
+                    Red 1 Climb:
+                    <select id="red-1-climb" name="red-1-climb">
+                        <option value="0" selected>No climb</option>
+                        <option value="3">Level 1</option>
+                        <option value="6">Level 2</option>
+                        <option value="12">Level 3</option>
+                    </select>
+                </span>
                 <br>
-                <button onclick="window.location.reload()">Reset</button>
-                <br>
-                <div id="error_messages"></div>
+                <span id="red_2_climb_selector" class="climb-selector">
+                    Red 2 Climb:
+                    <select id="red-2-climb" name="red-2-climb">
+                        <option value="0" selected>No climb</option>
+                        <option value="3">Level 1</option>
+                        <option value="6">Level 2</option>
+                        <option value="12">Level 3</option>
+                    </select>
+
+                    <div class="buddy-climb">
+                        <input type="checkbox" id="red-buddy-check" name="red-buddy" value="2">
+                        <label for="tie">Buddy Climb</label>
+                    </div>
+                </span>
+            </div>
+            <!-- Scoring Breakdown-->
+            <div id="scoring" class="split_screen_element">
+                <div class="table-container">
+                    <table class="score-table">
+                        <tr>
+                            <td class="neutral">Climb</td>
+                            <td class="red" id="score_climb_red">10</td>
+                        </tr>
+                        <tr>
+                            <td class="neutral">Alliance Stakes</td>
+                            <td class="red" id="score_alliance_red">4</td>
+                        </tr>
+                        <tr>
+                            <td class="neutral">Neutral Stakes</td>
+                            <td class="red" id="score_neutral_red">4</td>
+                        </tr>
+                        <tr>
+                            <td class="neutral">Mobile Goals</td>
+                            <td class="red" id="score_mogo_red">4</td>
+                        </tr>
+                        <tr>
+                            <td class="neutral">High Stake</td>
+                            <td class="red" id="score_high_red">4</td>
+                        </tr>
+                        <tr>
+                            <td class="neutral">Mogo Corner</td>
+                            <td class="red" id="score_mogo_corner_red">4</td>
+                        </tr>
+                        <tr>
+                            <th class="neutral">Final</td>
+                            <th class="red" id="score_full_red">3</td>
+                        </tr>
+
+                    </table>
+                    <br>
+                    <button onclick="window.location.reload()">Reset</button>
+                    <br>
+                    <div id="error_messages"></div>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
+    <footer>
+        <hr class="solid">
+        <p>Powered by Intense Milk</p>
+    </footer>
 
 </body>
 
