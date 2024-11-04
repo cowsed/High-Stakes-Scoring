@@ -281,7 +281,7 @@ function score_stake(el, max_rings){
           error_text_append(`Not all red rings scored. All blue rings worth 0 until all red rings scored.`);
         }
         if(!has_red_below){
-          error_text_append(`Blue rings scored below red rings earn 0 points.`);
+          error_text_append(`Blue rings not scored above red rings earn 0 points.`);
         }
       }
       score.score += bamt;
