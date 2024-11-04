@@ -256,6 +256,7 @@ function score_stake(el, max_rings){
         ramt = 0;
         has_red_below = false;
         error_text_append('Red rings scored above blue rings earn 0 points.')
+        error_text_append('Blue rings scored below red rings earn 0 points.')
       }
       
       score.score += ramt;
