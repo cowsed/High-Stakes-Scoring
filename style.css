@@ -187,6 +187,12 @@ p {
     margin-bottom: 10px;
 }
 
+footer {
+    margin-bottom: 0;
+    padding: 0;
+    margin-left: 15px;
+}
+
 /* phone */
 @media only screen and (max-width: 600px) {
     .split_screen_element {
@@ -224,6 +230,10 @@ p {
         margin-right: 0;
         user-select: none;
     }
+
+    footer {
+        text-align: center;
+    }
 }
 
 /* desktop */
@@ -234,7 +244,14 @@ p {
     
     .split_screen_element {
         padding: 1%;
-        width: 50%;
+    }
+
+    #setup {
+        width: 60%;
+    }
+
+    #scoring {
+        width: 40%;
     }
 
     .buddy-climb {
