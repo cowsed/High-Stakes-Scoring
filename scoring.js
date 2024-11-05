@@ -93,12 +93,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
   auto_winner_buttons = {
     'tie': document.getElementById('tie-radio'),
     'red': document.getElementById('red-radio'),
-    'blue': document.getElementById('blue-radio')
+    'blue': document.getElementById('blue-radio'),
+    'none': document.getElementById('none-radio')
   };
 
   auto_winner_buttons['tie'].addEventListener('click', recalculateAll);
   auto_winner_buttons['red'].addEventListener('click', recalculateAll);
   auto_winner_buttons['blue'].addEventListener('click', recalculateAll);
+  auto_winner_buttons['none'].addEventListener('click', recalculateAll);
 
   output_cells = {
     'auto': ScoreDistFromLabel('score_auto'),
@@ -330,7 +332,8 @@ function get_auto_points() {
   return {
     'red': new ScoreDist(6, 0),
     'blue': new ScoreDist(0, 6),
-    'tie': new ScoreDist(3, 3)
+    'tie': new ScoreDist(3, 3),
+    'none': new ScoreDist(0, 0)
   }[get_auto_winner()];
 }
 
