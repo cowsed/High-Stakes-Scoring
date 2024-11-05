@@ -49,8 +49,8 @@ function dragRing(ev) {
 }
 
 function dropRing(ev) {
-  if (!ev.target.classList.contains('stake') &&
-      !ev.target.classList.contains('ring_area')) {
+  if (!ev.target.classList.contains('stake') && !ev.target.classList.contains('ring_area')) {
+    el.classList.remove('ghost_ring')
     return;
   }
 
@@ -83,9 +83,9 @@ function dropRing(ev) {
 
 
 function ringNotThere(ev) {
-  //   var data = ev.dataTransfer.getData('text');
-  //   el = document.getElementById(data)
-  //   el.classList.remove('ghost_ring')
+  var data = ev.dataTransfer.getData('text');
+  el = document.getElementById(data)
+  el.classList.remove('ghost_ring')
   recalculateAll();
 }
 

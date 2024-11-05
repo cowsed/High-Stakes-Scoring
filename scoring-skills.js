@@ -104,6 +104,9 @@ function dropRing(ev){
 
 
 function ringNotThere(ev){
+  var data = ev.dataTransfer.getData('text');
+  el = document.getElementById(data)
+  el.classList.remove('ghost_ring')
   recalculateAll();
 }
 
