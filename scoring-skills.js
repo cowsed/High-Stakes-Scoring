@@ -102,7 +102,6 @@ function dropRing(ev){
   recalculateAll();
 }
 
-
 function ringNotThere(ev){
   var data = ev.dataTransfer.getData('text');
   el = document.getElementById(data)
@@ -348,17 +347,6 @@ function score_high(){
   const high_stake = document.getElementById('high_stake');
   var score = score_stake(high_stake, MAX_HIGH_RINGS);
   var score_climb = new Score(0);
-
-  const red1Climb = parseInt(document.getElementById('red-1-climb').value);
-  const red2Climb = parseInt(document.getElementById('red-2-climb').value);
-
-  const redRingsOnHighStake = high_stake.querySelectorAll('.red.ring').length;
-
-  if (redRingsOnHighStake > 0){
-    if (red1Climb > 0) score.score += 2;
-    if (red2Climb > 0) score.score += 2;
-    if(document.getElementById('red-buddy-check').checked) score.score += 2
-  }
 
   return [score, score_climb];
 }
