@@ -18,18 +18,23 @@
 
     <title>High Stakes Scoring</title>
     <link rel="stylesheet" href="style.css">
-    <script src="scoring-skills.js"></script>
+    <script src="vrc-skills-scoring.js"></script>
 
 </head>
 
 <body>
     <header>
         <p>
-            <b>VURC Skills Scoring Calculator</b>
+            <b>VRC Skills Scoring Calculator</b>
             <br>
             Drag and drop rings onto stakes
-            <br>
-            Click <a href="index.html">here</a> for match scoring.
+            <br><br>
+            <select name="select" onchange="javascript:handleSelect(this)">
+                <option value="vrc-skills">VRC Skills</option>
+                <option value="vexu-skills">VEX U Skills</option>
+                <option value="index">VRC Match</option>
+                <option value="vexu-match">VEX U Match</option>
+            </select>
         </p>
         <img src="RIT-VEX-logo.png" id="logo">
     </header>
@@ -78,20 +83,6 @@
                     </select>
                 </span>
                 <br>
-                <span id="red_2_climb_selector" class="climb-selector">
-                    Red 2 Climb:
-                    <select id="red-2-climb" name="red-2-climb">
-                        <option value="0" selected>No climb</option>
-                        <option value="3">Level 1</option>
-                        <option value="6">Level 2</option>
-                        <option value="12">Level 3</option>
-                    </select>
-
-                    <div class="buddy-climb">
-                        <input type="checkbox" id="red-buddy-check" name="red-buddy" value="2">
-                        <label for="tie">Buddy Climb</label><span id="buddy-label"> [Red 2]</span>
-                    </div>
-                </span>
             </div>
             <!-- Scoring Breakdown-->
             <div id="scoring" class="split_screen_element">
@@ -139,6 +130,13 @@
         <hr class="solid">
         <p>Powered by Intense Milk</p>
     </footer>
+
+    <script>
+        function handleSelect(elm)
+        {
+           window.location = elm.value+".html";
+        }
+    </script>
 
 </body>
 

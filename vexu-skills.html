@@ -18,33 +18,30 @@
 
     <title>High Stakes Scoring</title>
     <link rel="stylesheet" href="style.css">
-    <script src="vrc-match-scoring.js"></script>
+    <script src="vexu-skills-scoring.js"></script>
 
 </head>
 
 <body>
     <header>
         <p>
-            <b>VRC Match Scoring Calculator</b>
+            <b>VEX U Skills Scoring Calculator</b>
             <br>
             Drag and drop rings onto stakes
             <br><br>
             <select name="select" onchange="javascript:handleSelect(this)">
+                <option value="vexu-skills">VEX U Skills</option>
                 <option value="index">VRC Match</option>
                 <option value="vrc-skills">VRC Skills</option>
                 <option value="vexu-match">VEX U Match</option>
-                <option value="vexu-skills">VEX U Skills</option>
             </select>
         </p>
         <img src="RIT-VEX-logo.png" id="logo">
     </header>
     <main>
         <div class="top-score">
-            <h2 id="top_score_red">3</h2>
-            <h2> - </h2>
-            <h2 id="top_score_blue">3</h2>
+            <h2 id="top_score_red">0</h2>
         </div>
-        
         <div id="split_screen">
             <div id="setup" class="split_screen_element">
                 <div id="mobile_goals_start" class="stake_area">
@@ -74,62 +71,32 @@
                     <div id="blue_rings_start" class="ring_area" ondragover="allowDropRing(event)" ondrop="dropRing(event)">
                     </div>
                 </div>
-                <div class="selectors">
-                    <span id="auto_win_selector">
-                        Auto Winner:
-                        <input type="radio" id="tie-radio" name="auto_winner" value="tie" checked="checked">
-                        <label for="tie">Tie</label>
-        
-                        <input type="radio" id="red-radio" name="auto_winner" value="red">
-                        <label for="red">Red</label>
-        
-                        <input type="radio" id="blue-radio" name="auto_winner" value="blue">
-                        <label for="blue">Blue</label>
 
-                        <input type="radio" id="none-radio" name="auto_winner" value="none">
-                        <label for="blue">None</label>
-                    </span>
-                    <br><br>
-                    <span id="red_1_climb_selector" class="climb-selector">
-                        Red 1 Climb:
-                        <select id="red-1-climb" name="red-1-climb">
-                            <option value="0" selected="selected">No climb</option>
-                            <option value="3">Level 1</option>
-                            <option value="6">Level 2</option>
-                            <option value="12">Level 3</option>
-                        </select>
-                    </span>
-                    <br>
-                    <span id="red_2_climb_selector" class="climb-selector">
-                        Red 2 Climb:
-                        <select id="red-2-climb" name="red-2-climb">
-                            <option value="0" selected="selected">No climb</option>
-                            <option value="3">Level 1</option>
-                            <option value="6">Level 2</option>
-                            <option value="12">Level 3</option>
-                        </select>
-                    </span>
-                    <br><br>
-                    <span id="blue_1_climb_selector" class="climb-selector">
-                        Blue 1 Climb:
-                        <select id="blue-1-climb" name="blue-1-climb">
-                            <option value="0" selected="selected">No climb</option>
-                            <option value="3">Level 1</option>
-                            <option value="6">Level 2</option>
-                            <option value="12">Level 3</option>
-                        </select>
-                    </span>
-                    <br>
-                    <span id="blue_2_climb_selector" class="climb-selector">
-                        Blue 2 Climb:
-                        <select id="blue-2-climb" name="blue-2-climb">
-                            <option value="0" selected="selected">No climb</option>
-                            <option value="3">Level 1</option>
-                            <option value="6">Level 2</option>
-                            <option value="12">Level 3</option>
-                        </select>
-                    </span>
-                </div>
+                <br><br>
+                <span id="red_1_climb_selector" class="climb-selector">
+                    Red 1 Climb:
+                    <select id="red-1-climb" name="red-1-climb">
+                        <option value="0" selected>No climb</option>
+                        <option value="3">Level 1</option>
+                        <option value="6">Level 2</option>
+                        <option value="12">Level 3</option>
+                    </select>
+                </span>
+                <br>
+                <span id="red_2_climb_selector" class="climb-selector">
+                    Red 2 Climb:
+                    <select id="red-2-climb" name="red-2-climb">
+                        <option value="0" selected>No climb</option>
+                        <option value="3">Level 1</option>
+                        <option value="6">Level 2</option>
+                        <option value="12">Level 3</option>
+                    </select>
+
+                    <div class="buddy-climb">
+                        <input type="checkbox" id="red-buddy-check" name="red-buddy" value="2">
+                        <label for="tie">Buddy Climb</label><span id="buddy-label"> [Red 2]</span>
+                    </div>
+                </span>
             </div>
             <!-- Scoring Breakdown-->
             <div id="scoring" class="split_screen_element">
@@ -138,46 +105,40 @@
                         <tr>
                             <td class="neutral">Climb</td>
                             <td class="red" id="score_climb_red">10</td>
-                            <td class="blue" id="score_climb_blue">10</td>
                         </tr>
                         <tr>
                             <td class="neutral">Alliance Stakes</td>
                             <td class="red" id="score_alliance_red">4</td>
-                            <td class="blue" id="score_alliance_blue">3</td>
                         </tr>
                         <tr>
                             <td class="neutral">Neutral Stakes</td>
                             <td class="red" id="score_neutral_red">4</td>
-                            <td class="blue" id="score_neutral_blue">3</td>
                         </tr>
                         <tr>
                             <td class="neutral">Mobile Goals</td>
                             <td class="red" id="score_mogo_red">4</td>
-                            <td class="blue" id="score_mogo_blue">3</td>
                         </tr>
                         <tr>
                             <td class="neutral">High Stake</td>
                             <td class="red" id="score_high_red">4</td>
-                            <td class="blue" id="score_high_blue">3</td>
                         </tr>
                         <tr>
-                            <td class="neutral">Auto</td>
-                            <td class="red" id="score_auto_red">3</td>
-                            <td class="blue" id="score_auto_blue">3</td>
+                            <td class="neutral">Mogo Corner</td>
+                            <td class="red" id="score_mogo_corner_red">4</td>
                         </tr>
                         <tr>
                             <th class="neutral">Final</td>
                             <th class="red" id="score_full_red">3</td>
-                            <th class="blue" id="score_full_blue">3</td>
                         </tr>
-        
+
                     </table>
-                    <div>Delta: <span id="delta_location"></span></div>
-                    <button onclick="window.location.reload(true)">Reset</button>
+                    <br>
+                    <button onclick="window.location.reload()">Reset</button>
+                    <br>
                     <div id="error_messages"></div>
                 </div>
             </div>
-        </div> 
+        </div>
     </main>
     <footer>
         <hr class="solid">
@@ -190,7 +151,7 @@
            window.location = elm.value+".html";
         }
     </script>
-    
+
 </body>
 
 </html>

@@ -18,21 +18,21 @@
 
     <title>High Stakes Scoring</title>
     <link rel="stylesheet" href="style.css">
-    <script src="vrc-match-scoring.js"></script>
+    <script src="vexu-match-scoring.js"></script>
 
 </head>
 
 <body>
     <header>
         <p>
-            <b>VRC Match Scoring Calculator</b>
+            <b>VEX U Match Scoring Calculator</b>
             <br>
             Drag and drop rings onto stakes
             <br><br>
             <select name="select" onchange="javascript:handleSelect(this)">
+                <option value="vexu-match">VEX U Match</option>
                 <option value="index">VRC Match</option>
                 <option value="vrc-skills">VRC Skills</option>
-                <option value="vexu-match">VEX U Match</option>
                 <option value="vexu-skills">VEX U Skills</option>
             </select>
         </p>
@@ -108,6 +108,11 @@
                             <option value="6">Level 2</option>
                             <option value="12">Level 3</option>
                         </select>
+        
+                        <div class="buddy-climb">
+                            <input type="checkbox" id="red-buddy-check" name="red-buddy" value="2">
+                            <label for="tie">Red Buddy Climb</label><span id="buddy-label"> [Red 2]</span>
+                        </div>
                     </span>
                     <br><br>
                     <span id="blue_1_climb_selector" class="climb-selector">
@@ -128,6 +133,11 @@
                             <option value="6">Level 2</option>
                             <option value="12">Level 3</option>
                         </select>
+                        
+                        <div class="buddy-climb">
+                            <input type="checkbox" id="blue-buddy-check" name="blue-buddy" value="2">
+                            <label for="blue-buddy-check">Blue Buddy Climb</label><span id="buddy-label"> [Blue 2]</span>
+                        </div>
                     </span>
                 </div>
             </div>
