@@ -17,6 +17,10 @@
     --high-stake-height: calc(var(--ring-stacking-unit-height) * 1);
 }
 
+header select {
+    margin-left: 30px;
+}
+
 .split_screen_element {
     padding: 1%;
     width: 100%; /* Default to full width on mobile */
@@ -264,6 +268,12 @@ footer p {
 
     #buddy-label {
         visibility: visible;
+    }
+
+    header select {
+        display: block;
+        margin-left: 0;
+        margin-top: 15px;
     }
 }
 
