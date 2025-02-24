@@ -299,10 +299,12 @@ function score_high() {
   if (redRingsOnHighStake > 0) {
     if (red1Climb > 0) score_climb.red += 2;
     if (red2Climb > 0) score_climb.red += 2;
+    scores.red += 3;
   }
   if (blueRingsOnHighStake > 0) {
     if (blue1Climb > 0) score_climb.blue += 2;
     if (blue2Climb > 0) score_climb.blue += 2;
+    scores.blue += 3;
   }
 
   return [scores, score_climb];
